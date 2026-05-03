@@ -871,7 +871,7 @@ export const modules: Module[] = [
       {
         q: "A mod-n counter using a synchronous binary up-counter with synchronous clear input is shown. gate to the CLEAR input. The value of n is:",
         options: ["7", "10", "15", "20"],
-        answer: 1,
+        answer: 0,
         difficulty: "Hard",
         image: "/mod10_counter.png",
         explanation: "The AND gate detects state 1010 (decimal 10) and triggers CLEAR, resetting the counter. So it counts 0–9 (10 states), making it mod-10.",
