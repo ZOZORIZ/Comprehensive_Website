@@ -194,6 +194,21 @@ export default function ExamQuestionsPage() {
                 <p className="text-xs text-gray-500 dark:text-gray-400">Interactive quick review</p>
               </div>
             </Link>
+            <div className="h-px bg-gray-100 dark:bg-gray-700" />
+            <button 
+              onClick={() => {
+                setShowOnlyBookmarked(true)
+                setMenuOpen(false)
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+              className="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-amber-50 dark:hover:bg-gray-700 transition-colors group"
+            >
+              <span className="text-xl">⭐</span>
+              <div>
+                <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 group-hover:text-amber-700 dark:group-hover:text-amber-400">Bookmarked</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Review your saved questions</p>
+              </div>
+            </button>
           </div>
         )}
       </div>
@@ -264,19 +279,21 @@ export default function ExamQuestionsPage() {
               Download PDF
             </Button>
 
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-sm text-gray-500 dark:text-gray-400 mr-1 hidden sm:inline-block">Jump to:</span>
-              {modules.map((m, i) => (
-                <button
-                  key={i}
-                  onClick={() => {
-                    document.getElementById(`module-${i}`)?.scrollIntoView({ behavior: 'smooth' })
-                  }}
-                  className="text-xs font-semibold px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-300 dark:hover:bg-indigo-900/50 transition-colors border border-indigo-100 dark:border-indigo-800 shadow-sm"
-                >
-                  {m.title}
-                </button>
-              ))}
+            <div className="flex flex-col items-end gap-2 w-full sm:w-auto mt-4 sm:mt-0">
+              <span className="text-sm font-medium text-gray-600 dark:text-gray-400 self-start sm:self-end">Jump to:</span>
+              <div className="flex flex-wrap gap-2 justify-start sm:justify-end w-full">
+                {modules.map((m, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      document.getElementById(`module-${i}`)?.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    className="text-xs font-semibold px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-300 dark:hover:bg-indigo-900/50 transition-colors border border-indigo-100 dark:border-indigo-800 shadow-sm"
+                  >
+                    {m.title}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -329,27 +346,31 @@ export default function ExamQuestionsPage() {
                         className="border-l-4 border-indigo-200 dark:border-indigo-800 pl-4 relative group"
                         onMouseEnter={() => setStudyPosition(module.originalIndex, originalQIndex)}
                       >
-                        <button
-                          onClick={() => toggleBookmark(id)}
-                          className="absolute -left-10 top-0 p-1 rounded-full opacity-0 group-hover:opacity-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all focus:opacity-100"
-                          title="Bookmark Question"
-                        >
-                          <Star className={`w-5 h-5 ${bookmarked ? 'fill-amber-500 text-amber-500' : 'text-gray-300 dark:text-gray-600'}`} />
-                        </button>
-
-                        <div className="flex items-start gap-2 mb-3">
-                          <p className="font-semibold text-gray-900 dark:text-gray-100 flex-1">
+                        <div className="flex items-start gap-3 mb-3">
+                          <p className="font-semibold text-gray-900 dark:text-gray-100 flex-1 mt-1">
                             {originalQIndex + 1}. {q.q}
-                            {bookmarked && <Star className="inline w-4 h-4 fill-amber-500 text-amber-500 ml-2 md:hidden" />}
                           </p>
-                          {q.difficulty && (
-                            <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap ${q.difficulty === 'Easy'
-                              ? 'bg-green-100 text-green-800 border border-green-300 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800'
-                              : 'bg-red-100 text-red-800 border border-red-300 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800'
-                              }`}>
-                              {q.difficulty}
-                            </span>
-                          )}
+                          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2 shrink-0">
+                            {q.difficulty && (
+                              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap ${q.difficulty === 'Easy'
+                                ? 'bg-green-100 text-green-800 border border-green-300 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800'
+                                : 'bg-red-100 text-red-800 border border-red-300 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800'
+                                }`}>
+                                {q.difficulty}
+                              </span>
+                            )}
+                            <button
+                              onClick={() => toggleBookmark(id)}
+                              className={`p-1.5 rounded-md transition-colors border ${
+                                bookmarked 
+                                  ? 'bg-amber-50 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/30 dark:border-amber-700 dark:hover:bg-amber-900/50' 
+                                  : 'bg-white border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700'
+                              }`}
+                              title={bookmarked ? "Remove Bookmark" : "Bookmark Question"}
+                            >
+                              <Star className={`w-4 h-4 ${bookmarked ? 'fill-amber-500 text-amber-500' : 'text-gray-400 dark:text-gray-500'}`} />
+                            </button>
+                          </div>
                         </div>
                         {q.image && (
                           <div className="my-3 ml-0 sm:ml-4">
@@ -404,18 +425,18 @@ export default function ExamQuestionsPage() {
                     )
                   })}
                 </div>
-              </div>
+              </div >
             )
-          })
+})
         )}
 
-        {/* Footer */}
-        <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-6 text-center border border-indigo-100 dark:border-indigo-800/50">
-          <p className="text-gray-600 dark:text-gray-400">
-            made by claude opus 4.7 :D
-          </p>
-        </div>
-      </div>
-    </div>
+{/* Footer */ }
+<div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-6 text-center border border-indigo-100 dark:border-indigo-800/50">
+  <p className="text-gray-600 dark:text-gray-400">
+    made by claude opus 4.7 :D
+  </p>
+</div>
+      </div >
+    </div >
   )
 }
