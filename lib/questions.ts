@@ -1,0 +1,1424 @@
+export type Question = {
+  q: string
+  options: [string, string, string, string]
+  /** index of correct option, 0-3 */
+  answer: 0 | 1 | 2 | 3
+}
+
+export type Module = {
+  title: string
+  subject: string
+  questions: Question[]
+}
+
+export const modules: Module[] = [
+  // =====================================================================
+  {
+    title: "Module I",
+    subject: "Data Structures",
+    questions: [
+      {
+        q: "Which asymptotic notation provides a tight bound on the execution time of an algorithm?",
+        options: ["O (Big-Oh)", "Ω (Big-Omega)", "Θ (Big-Theta)", "Little-oh"],
+        answer: 2,
+      },
+      {
+        q: "Which notation represents the upper bound of an algorithm's time complexity?",
+        options: ["Ω (Omega)", "Θ (Theta)", "O (Big-O)", "δ (Delta)"],
+        answer: 2,
+      },
+      {
+        q: "Which of the following best describes time complexity?",
+        options: [
+          "Amount of memory used by an algorithm",
+          "Execution time of an algorithm as input grows",
+          "Number of variables in a program",
+          "Size of the output",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Space complexity is defined as:",
+        options: [
+          "The number of steps an algorithm takes",
+          "The maximum memory space required by an algorithm during execution",
+          "The disk space used to store the code",
+          "The time taken for memory allocation",
+        ],
+        answer: 1,
+      },
+      {
+        q: "A sparse matrix is best defined as a matrix where:",
+        options: [
+          "All elements are zero",
+          "Most of the elements are zero",
+          "The determinant is zero",
+          "It has more rows than columns",
+        ],
+        answer: 1,
+      },
+      {
+        q: "A sparse matrix is best represented using a linked list rather than a 2-D array because it:",
+        options: [
+          "Reduces access time for all elements",
+          "Stores only non-zero elements, saving memory",
+          "Eliminates the need for row and column indices",
+          "Allows constant-time random access",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which data structure follows the LIFO principle?",
+        options: ["Queue", "Linked List", "Stack", "Binary Tree"],
+        answer: 2,
+      },
+      {
+        q: "Which data structure follows the FIFO principle?",
+        options: ["Stack", "Queue", "Tree", "Graph"],
+        answer: 1,
+      },
+      {
+        q: "Which data structure is used to convert an infix expression to a postfix expression?",
+        options: ["Queue", "Tree", "Stack", "Array"],
+        answer: 2,
+      },
+      {
+        q: "Convert the infix expression A + B * C to postfix:",
+        options: ["ABC*+", "AB+C*", "+A*BC", "ABC+*"],
+        answer: 0,
+      },
+      {
+        q: "If a stack of size 10 has top = 9, what happens on another push?",
+        options: ["Underflow", "Successful insertion", "Overflow", "Stack resets"],
+        answer: 2,
+      },
+      {
+        q: "A Deque (Double-Ended Queue) allows insertion and deletion at:",
+        options: ["Only the front", "Only the rear", "Both front and rear", "The middle only"],
+        answer: 2,
+      },
+      {
+        q: "In a singly linked list, each node contains:",
+        options: ["Data and two pointers", "Only data", "Data and one pointer", "Only pointer"],
+        answer: 2,
+      },
+      {
+        q: "Which linked list allows traversal in both directions?",
+        options: ["Singly linked list", "Circular linked list", "Doubly linked list", "Linear list"],
+        answer: 2,
+      },
+      {
+        q: "In a circular linked list, the last node points to:",
+        options: ["NULL", "The middle node", "The first node", "Itself only"],
+        answer: 2,
+      },
+      {
+        q: "Time complexity of inserting an element at the beginning of a singly linked list is:",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
+        answer: 0,
+      },
+      {
+        q: "In a Doubly Linked List, deleting a node requires updating how many pointers?",
+        options: ["1", "2", "3", "4"],
+        answer: 1,
+      },
+      {
+        q: "Which traversal of a binary tree visits the root node first?",
+        options: ["Inorder", "Preorder", "Postorder", "Level order"],
+        answer: 1,
+      },
+      {
+        q: "Which traversal of a Binary Search Tree (BST) produces elements in sorted order?",
+        options: ["Pre-order", "In-order", "Post-order", "Level-order"],
+        answer: 1,
+      },
+      {
+        q: "In a BST, the left child contains values:",
+        options: ["Greater than the root", "Equal to the root", "Less than the root", "Random values"],
+        answer: 2,
+      },
+      {
+        q: "Maximum number of nodes in a binary tree of height h (root at height 0)?",
+        options: ["2^h", "2^(h+1) - 1", "2h - 1", "h^2"],
+        answer: 1,
+      },
+      {
+        q: "In an array-based binary tree using 0-based indexing, the right child of node at index i is:",
+        options: ["2i", "2i + 1", "2i + 2", "i + 2"],
+        answer: 2,
+      },
+      {
+        q: "Time complexity of BFS on a graph with V vertices and E edges?",
+        options: ["O(V)", "O(E)", "O(V + E)", "O(V × E)"],
+        answer: 2,
+      },
+      {
+        q: "Which data structure is primarily used in Breadth First Search (BFS)?",
+        options: ["Stack", "Queue", "Heap", "Tree"],
+        answer: 1,
+      },
+      {
+        q: "Which traversal algorithm uses a stack or recursion internally?",
+        options: ["Breadth First Search", "Depth First Search", "Dijkstra's algorithm", "Prim's algorithm"],
+        answer: 1,
+      },
+      {
+        q: "Which is an application of Depth First Search (DFS)?",
+        options: [
+          "Finding shortest path in unweighted graph",
+          "Level order traversal",
+          "Detecting cycles in a graph",
+          "Priority scheduling",
+        ],
+        answer: 2,
+      },
+      {
+        q: "Space complexity of an adjacency matrix for a graph with V vertices is:",
+        options: ["O(V)", "O(E)", "O(V^2)", "O(V + E)"],
+        answer: 2,
+      },
+      {
+        q: "For a sparse graph with very few edges, the most memory-efficient representation is:",
+        options: ["Adjacency matrix", "Incidence matrix", "Adjacency list", "Edge list with sorting"],
+        answer: 2,
+      },
+      {
+        q: "Which sorting technique uses a 'pivot' element to partition the array?",
+        options: ["Insertion Sort", "Quick Sort", "Bubble Sort", "Selection Sort"],
+        answer: 1,
+      },
+      {
+        q: "Average time complexity of Quick Sort is:",
+        options: ["O(n)", "O(n log n)", "O(n^2)", "O(log n)"],
+        answer: 1,
+      },
+      {
+        q: "Worst-case time complexity of Quick Sort is:",
+        options: ["O(n log n)", "O(n)", "O(n^2)", "O(log n)"],
+        answer: 2,
+      },
+      {
+        q: "Hashing maps a large range of keys into:",
+        options: [
+          "A larger range of indices",
+          "A smaller range of index positions",
+          "A linked list always",
+          "A binary tree",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Collision in hashing occurs when:",
+        options: [
+          "Hash table is full",
+          "Two keys map to the same address",
+          "Key size is large",
+          "Table size is prime",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which collision resolution technique stores all elements that hash to the same slot in a linked list?",
+        options: ["Linear Probing", "Quadratic Probing", "Chaining", "Double Hashing"],
+        answer: 2,
+      },
+      {
+        q: "In the Mid-square hashing function, the hash is obtained by:",
+        options: [
+          "Dividing key by a prime number",
+          "Squaring the key and extracting middle digits",
+          "Folding the key into parts",
+          "Converting key to binary",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Digit-analysis hashing yields better key distribution when:",
+        options: [
+          "Keys are random and uniformly distributed",
+          "Keys share common patterns in certain digit positions",
+          "Table size is a prime number",
+          "Collision resolution uses chaining",
+        ],
+        answer: 1,
+      },
+    ],
+  },
+
+  // =====================================================================
+  {
+    title: "Module II",
+    subject: "Logic Circuit Design",
+    questions: [
+      {
+        q: "Which number system uses base 2?",
+        options: ["Decimal", "Binary", "Octal", "Hexadecimal"],
+        answer: 1,
+      },
+      {
+        q: "Which number system maps exactly 4 bits to one digit, used as binary shorthand?",
+        options: ["Octal", "Hexadecimal", "Decimal", "BCD"],
+        answer: 1,
+      },
+      {
+        q: "Which digit is NOT valid in the octal number system?",
+        options: ["3", "5", "7", "8"],
+        answer: 3,
+      },
+      {
+        q: "The hexadecimal equivalent of decimal 15 is:",
+        options: ["E", "D", "F", "10"],
+        answer: 2,
+      },
+      {
+        q: "Result of the hexadecimal subtraction (1A)16 − (0B)16:",
+        options: ["(0F)16", "(11)16", "(10)16", "(09)16"],
+        answer: 0,
+      },
+      {
+        q: "Sum of (17)8 and (12)8 in octal:",
+        options: ["(29)8", "(31)8", "(21)8", "(30)8"],
+        answer: 1,
+      },
+      {
+        q: "Octal 745 converted to hexadecimal is:",
+        options: ["F5", "1E5", "3E5", "7A5"],
+        answer: 1,
+      },
+      {
+        q: "In signed 2's complement, the 8-bit value 11111101 represents:",
+        options: ["-3", "-2", "-1", "-5"],
+        answer: 0,
+      },
+      {
+        q: "Which signed representation eliminates both +0 and −0?",
+        options: ["Sign-magnitude", "One's complement", "Two's complement", "Excess-3"],
+        answer: 2,
+      },
+      {
+        q: "−0.625 in fixed-point binary with 3 fractional bits (sign-magnitude) is:",
+        options: ["1.011", "0.101", "1.101", "0.011"],
+        answer: 2,
+      },
+      {
+        q: "Which representation allows very large and very small numeric values?",
+        options: ["Fixed point", "BCD", "Floating point", "Gray code"],
+        answer: 2,
+      },
+      {
+        q: "Increasing the exponent bits of a floating-point format primarily:",
+        options: [
+          "Increases precision",
+          "Reduces rounding error",
+          "Increases dynamic range",
+          "Speeds up computation",
+        ],
+        answer: 2,
+      },
+      {
+        q: "BCD stands for:",
+        options: ["Binary Coded Decimal", "Binary Calculated Digit", "Bit Coded Decimal", "Binary Coded Dual"],
+        answer: 0,
+      },
+      {
+        q: "Adding BCD digits 7 and 8 (with BCD correction) gives:",
+        options: ["1111", "0101 0000", "0001 0101", "0001 0011"],
+        answer: 2,
+      },
+      {
+        q: "The Gray code is a:",
+        options: ["Weighted code", "Cyclic / Unit-distance code", "Sequential code", "Alphanumeric code"],
+        answer: 1,
+      },
+      {
+        q: "Binary 11011 in Gray code is:",
+        options: ["10110", "11110", "10111", "10101"],
+        answer: 0,
+      },
+      {
+        q: "Excess-3 code is also known as:",
+        options: ["BCD + 2", "BCD + 3", "Self-complementing code", "Both B and C"],
+        answer: 3,
+      },
+      {
+        q: "Decimal 9 in 4-bit Excess-3 code is:",
+        options: ["1001", "1100", "1111", "1010"],
+        answer: 1,
+      },
+      {
+        q: "According to De Morgan's theorem, A·B equals:",
+        options: ["A'·B'", "A+B", "A'+B'", "A+B"],
+        answer: 2,
+      },
+      {
+        q: "Which Boolean law states A + A' = 1?",
+        options: ["Commutative law", "Associative law", "Complement law", "Distributive law"],
+        answer: 2,
+      },
+      {
+        q: "The principle of duality states that an expression remains valid if:",
+        options: [
+          "ANDs are swapped with ORs",
+          "1s are swapped with 0s",
+          "Variables are complemented",
+          "Both A and B",
+        ],
+        answer: 3,
+      },
+      {
+        q: "Which form represents a Boolean function as a sum of minterms?",
+        options: ["POS", "SOP", "Canonical POS", "Product form"],
+        answer: 1,
+      },
+      {
+        q: "Which gate is a universal gate?",
+        options: ["AND", "OR", "NAND", "XOR"],
+        answer: 2,
+      },
+      {
+        q: "Karnaugh map is mainly used for:",
+        options: [
+          "Boolean expression evaluation",
+          "Code conversion",
+          "Logic circuit simulation",
+          "Minimization of Boolean expressions",
+        ],
+        answer: 3,
+      },
+      {
+        q: "In K-map minimization, a group of 8 adjacent cells (octet) eliminates:",
+        options: ["2 variables", "3 variables", "4 variables", "8 variables"],
+        answer: 2,
+      },
+      {
+        q: "Simplify F = A·(A' + B):",
+        options: ["A", "B", "A·B", "A+B"],
+        answer: 2,
+      },
+      {
+        q: "K-map for F(A,B,C) with minterms m(0,2,4,6) simplifies to:",
+        options: ["A", "C", "C'", "B'"],
+        answer: 2,
+      },
+      {
+        q: "Which combinational circuit converts a decimal number into a binary code?",
+        options: ["Decoder", "Encoder", "Multiplexer", "Demultiplexer"],
+        answer: 1,
+      },
+      {
+        q: "How many select lines are required for a 16-to-1 Multiplexer?",
+        options: ["2", "3", "4", "8"],
+        answer: 2,
+      },
+      {
+        q: "How many 4-to-1 MUX are needed to construct a 16-to-1 MUX?",
+        options: ["4", "5", "3", "16"],
+        answer: 1,
+      },
+      {
+        q: "In a 4:1 MUX with select S1S0 = 10, the input appearing at output is:",
+        options: ["D0", "D1", "D2", "D3"],
+        answer: 2,
+      },
+      {
+        q: "Which device performs the reverse operation of an encoder?",
+        options: ["Decoder", "Multiplexer", "Demultiplexer", "Comparator"],
+        answer: 0,
+      },
+      {
+        q: "A 2-to-4 line decoder with an enable input can also act as:",
+        options: ["Multiplexer", "Demultiplexer", "Encoder", "Adder"],
+        answer: 1,
+      },
+      {
+        q: "In a 3-to-8 decoder, applying input 101 activates:",
+        options: ["One output Y5", "Two outputs Y1 and Y5", "One output Y1", "All outputs"],
+        answer: 0,
+      },
+      {
+        q: "A Half Adder consists of which two logic gates?",
+        options: ["AND and OR", "XOR and AND", "XOR and OR", "NAND and NOR"],
+        answer: 1,
+      },
+      {
+        q: "Which adder adds three input bits?",
+        options: ["Half adder", "Full adder", "Parallel adder", "Ripple carry adder"],
+        answer: 1,
+      },
+      {
+        q: "A Full Subtractor requires how many inputs?",
+        options: ["2", "3", "4", "1"],
+        answer: 1,
+      },
+      {
+        q: "To implement a Full Adder using two Half Adders, the additional gate required is:",
+        options: ["AND", "OR", "NOT", "XOR"],
+        answer: 1,
+      },
+      {
+        q: "In a 4-bit ripple carry adder with 10 ns per full adder, worst-case delay is:",
+        options: ["10 ns", "20 ns", "30 ns", "40 ns"],
+        answer: 3,
+      },
+      {
+        q: "In an S–R flip-flop, S=1 and R=1 is invalid because:",
+        options: [
+          "Output oscillates continuously",
+          "Both outputs become 0, violating complementarity",
+          "Clock signal is disabled",
+          "Produces a metastable state only",
+        ],
+        answer: 1,
+      },
+      {
+        q: "The 'Race Around Condition' is a problem in which flip-flop?",
+        options: ["SR Flip-flop", "D Flip-flop", "JK Flip-flop", "T Flip-flop"],
+        answer: 2,
+      },
+      {
+        q: "In a JK flip-flop, when J=1 and K=1, the next state Qn+1 is:",
+        options: ["0", "1", "No change", "Q'n (Toggle)"],
+        answer: 3,
+      },
+      {
+        q: "Which flip-flop is essentially a JK with J and K tied together?",
+        options: ["D Flip-flop", "T Flip-flop", "RS Flip-flop", "Master-Slave Flip-flop"],
+        answer: 1,
+      },
+      {
+        q: "Master–Slave JK flip-flop is preferred mainly to:",
+        options: [
+          "Reduce power consumption",
+          "Simplify combinational logic",
+          "Eliminate the race-around condition",
+          "Allow asynchronous operation",
+        ],
+        answer: 2,
+      },
+      {
+        q: "Which shift register loads data all at once and shifts out one bit at a time?",
+        options: ["SISO", "SIPO", "PISO", "PIPO"],
+        answer: 2,
+      },
+      {
+        q: "A SIPO shift register converts:",
+        options: ["Serial to serial", "Parallel to serial", "Serial to parallel", "Parallel to parallel"],
+        answer: 2,
+      },
+      {
+        q: "A PIPO register storing a 4-bit word needs how many clock cycles to load?",
+        options: ["1", "4", "0", "8"],
+        answer: 0,
+      },
+      {
+        q: "A Ring Counter with n flip-flops has how many distinct states?",
+        options: ["n", "2^n", "2n", "n − 1"],
+        answer: 0,
+      },
+      {
+        q: "A Johnson counter with 5 flip-flops produces how many states?",
+        options: ["5", "10", "32", "25"],
+        answer: 1,
+      },
+      {
+        q: "In an Asynchronous counter, the maximum operating frequency is limited because:",
+        options: [
+          "All flip-flops are clocked simultaneously",
+          "Cumulative propagation delay causes incorrect transitions",
+          "More hardware is required",
+          "Clock skew is eliminated",
+        ],
+        answer: 1,
+      },
+      {
+        q: "For a 3-bit synchronous DOWN counter, the next state after 000 is:",
+        options: ["001", "111", "110", "101"],
+        answer: 1,
+      },
+      {
+        q: "In Verilog, which keyword represents a physical connection between structural elements?",
+        options: ["Reg", "Wire", "Integer", "Parameter"],
+        answer: 1,
+      },
+      {
+        q: "Which Verilog modeling style uses an always block to describe logic?",
+        options: ["Gate-level", "Structural", "Behavioral", "Literal"],
+        answer: 2,
+      },
+      {
+        q: "Verilog half adder: assign Sum = A ^ B; assign Carry = ___;",
+        options: ["A | B", "A & B", "A ~^ B", "A + B"],
+        answer: 1,
+      },
+    ],
+  },
+
+  // =====================================================================
+  {
+    title: "Module III",
+    subject: "Computer Organization and Architecture",
+    questions: [
+      {
+        q: "Which functional unit performs arithmetic and logical operations?",
+        options: ["Control Unit", "Memory Unit", "Arithmetic Logic Unit", "Input Unit"],
+        answer: 2,
+      },
+      {
+        q: "Which functional unit controls and coordinates all other units?",
+        options: ["ALU", "Register", "Control Unit", "Cache"],
+        answer: 2,
+      },
+      {
+        q: "A system bus is used to:",
+        options: [
+          "Store data",
+          "Perform computation",
+          "Transfer data, address and control signals between units",
+          "Decode instructions",
+        ],
+        answer: 2,
+      },
+      {
+        q: "A memory location is identified by its:",
+        options: ["Data value", "Instruction", "Address", "Size"],
+        answer: 2,
+      },
+      {
+        q: "Which memory operation reads data from memory?",
+        options: ["Write", "Fetch", "Read", "Execute"],
+        answer: 2,
+      },
+      {
+        q: "During a memory read, the correct sequence is:",
+        options: [
+          "Address placed on bus, read signal asserted, data transferred to CPU",
+          "Data placed on bus then address",
+          "CPU writes data first then reads address",
+          "Memory writes to disk first",
+        ],
+        answer: 0,
+      },
+      {
+        q: "A byte-addressable memory stores a 32-bit word starting at 0x1004 (big-endian). The MSB is at:",
+        options: ["0x1004", "0x1005", "0x1006", "0x1007"],
+        answer: 0,
+      },
+      {
+        q: "Addressing modes are used to:",
+        options: [
+          "Increase memory size",
+          "Reduce instruction length",
+          "Specify how operands are accessed",
+          "Speed up ALU operations",
+        ],
+        answer: 2,
+      },
+      {
+        q: "Which addressing mode places the operand's actual memory address directly in the instruction?",
+        options: ["Immediate", "Register", "Direct", "Indirect"],
+        answer: 2,
+      },
+      {
+        q: "Which addressing mode requires two memory accesses to fetch the operand?",
+        options: ["Immediate addressing", "Register addressing", "Direct addressing", "Indirect addressing"],
+        answer: 3,
+      },
+      {
+        q: "Instruction sequencing in a CPU is supported primarily by which register?",
+        options: ["Accumulator", "Program Counter (PC)", "Instruction Register", "Stack Pointer"],
+        answer: 1,
+      },
+      {
+        q: "The instruction cycle consists of:",
+        options: ["Fetch only", "Decode only", "Execute only", "Fetch, Decode and Execute"],
+        answer: 3,
+      },
+      {
+        q: "During the fetch phase, the correct micro-operation sequence is:",
+        options: [
+          "MDR ← Memory; IR ← MDR; PC ← PC + 1",
+          "MAR ← PC; MDR ← Memory[MAR]; IR ← MDR; PC ← PC + 1",
+          "IR ← PC; MAR ← MDR; PC ← PC − 1",
+          "MAR ← IR; MDR ← Memory; PC ← PC + 1",
+        ],
+        answer: 1,
+      },
+      {
+        q: "If PC = 400 and instruction length is 4 bytes, after fetch (branch not taken) PC becomes:",
+        options: ["400", "401", "404", "Depends on branch"],
+        answer: 2,
+      },
+      {
+        q: "Register Transfer Logic (RTL) is mainly used to describe:",
+        options: [
+          "Data storage in memory",
+          "Micro-operations / transfer of data between registers",
+          "Instruction decoding",
+          "ALU design",
+        ],
+        answer: 1,
+      },
+      {
+        q: "RTL R2 ← R1 + R3 implies:",
+        options: [
+          "Data transfer without computation",
+          "ALU arithmetic operation with register operands",
+          "Memory-to-register transfer",
+          "Control unit state transition only",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Arithmetic and shift micro-operations are executed by:",
+        options: ["Control Unit", "Arithmetic Logic Unit (ALU)", "Cache", "DMA controller"],
+        answer: 1,
+      },
+      {
+        q: "Which algorithm is commonly used for binary multiplication of signed numbers?",
+        options: ["Booth's algorithm", "Euclid's algorithm", "Dijkstra's algorithm", "Huffman algorithm"],
+        answer: 0,
+      },
+      {
+        q: "Booth's algorithm is mainly used to:",
+        options: [
+          "Reduce hardware cost",
+          "Handle signed numbers efficiently",
+          "Increase clock speed",
+          "Eliminate carry propagation",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which multiplier generates partial products simultaneously?",
+        options: ["Booth multiplier", "Sequential multiplier", "Array multiplier", "Wallace tree multiplier"],
+        answer: 2,
+      },
+      {
+        q: "Pipelining improves processor performance by:",
+        options: [
+          "Reducing instruction size",
+          "Increasing clock period",
+          "Overlapping instruction execution",
+          "Reducing memory size",
+        ],
+        answer: 2,
+      },
+      {
+        q: "Which is an example of an arithmetic pipeline?",
+        options: ["Instruction fetch", "Floating-point addition", "Interrupt handling", "Cache access"],
+        answer: 1,
+      },
+      {
+        q: "A data hazard in a pipeline occurs when:",
+        options: [
+          "Two instructions need same hardware",
+          "Control flow changes",
+          "An instruction depends on a previous instruction's result",
+          "An interrupt occurs",
+        ],
+        answer: 2,
+      },
+      {
+        q: "Hard-wired control is characterized by:",
+        options: [
+          "High flexibility",
+          "Slow operation",
+          "Use of microinstructions",
+          "Fast operation but less flexible",
+        ],
+        answer: 3,
+      },
+      {
+        q: "A key disadvantage of hard-wired control is:",
+        options: [
+          "Use of microinstructions",
+          "Difficulty modifying the instruction set",
+          "High cost of control memory",
+          "Slow execution speed",
+        ],
+        answer: 1,
+      },
+      {
+        q: "In microprogrammed control, control signals are generated by:",
+        options: ["ALU", "Control memory", "Cache", "Register file"],
+        answer: 1,
+      },
+      {
+        q: "The microprogram sequencer is responsible for:",
+        options: [
+          "Decoding opcode directly into control signals",
+          "Selecting and sequencing the next microinstruction address",
+          "Executing arithmetic micro-operations",
+          "Handling interrupt prioritization",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Horizontal microinstructions differ from vertical ones in:",
+        options: [
+          "Smaller control memory",
+          "Fewer control signals per microinstruction",
+          "Higher parallelism with wider words",
+          "Slower execution due to decoding",
+        ],
+        answer: 2,
+      },
+      {
+        q: "Which mechanism allows an I/O device to transfer data directly to memory without continuous CPU intervention?",
+        options: ["Programmed I/O", "Interrupt-driven I/O", "Direct Memory Access (DMA)", "Memory-mapped I/O"],
+        answer: 2,
+      },
+      {
+        q: "Interrupt hardware in a real-time system is mainly designed to:",
+        options: [
+          "Reduce memory access latency",
+          "Allow immediate response to asynchronous external events",
+          "Eliminate polling completely",
+          "Increase instruction throughput",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Semiconductor RAM differs from ROM in that RAM:",
+        options: [
+          "Is non-volatile",
+          "Allows both read and write during normal execution",
+          "Is used only for firmware",
+          "Does not require address decoding",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which memory stores permanent programs (firmware)?",
+        options: ["RAM", "Cache", "ROM", "CAM"],
+        answer: 2,
+      },
+      {
+        q: "Cache mapping that allows any block to map to any line is:",
+        options: ["Direct mapping", "Associative mapping", "Set-associative mapping", "Linear mapping"],
+        answer: 1,
+      },
+      {
+        q: "Which cache mapping offers a practical compromise between hardware complexity and hit ratio?",
+        options: ["Direct mapping", "Fully associative mapping", "Set-associative mapping", "Random mapping"],
+        answer: 2,
+      },
+      {
+        q: "Content Addressable Memory (CAM) is accessed by:",
+        options: ["Address only", "Content / data value", "Sequential index", "Disk block number"],
+        answer: 1,
+      },
+    ],
+  },
+
+  // =====================================================================
+  {
+    title: "Module IV",
+    subject: "Operating Systems",
+    questions: [
+      {
+        q: "The primary role of an operating system is:",
+        options: [
+          "Program execution only",
+          "Resource management and abstraction between hardware and user",
+          "User interface only",
+          "Data storage",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which OS service allows programs to request services from the kernel?",
+        options: ["Interrupts", "System calls", "Context switching", "Scheduling"],
+        answer: 1,
+      },
+      {
+        q: "Which system call creates a new process in UNIX?",
+        options: ["exec()", "wait()", "fork()", "exit()"],
+        answer: 2,
+      },
+      {
+        q: "In a layered OS, the main advantage is:",
+        options: [
+          "Faster execution due to parallel layers",
+          "Easier debugging and modular verification",
+          "Elimination of hardware dependency",
+          "Reduced memory footprint",
+        ],
+        answer: 1,
+      },
+      {
+        q: "In a microkernel architecture, which service typically runs in user space?",
+        options: ["Process management", "Memory management", "Device drivers", "Scheduling"],
+        answer: 2,
+      },
+      {
+        q: "A microkernel improves system reliability primarily because:",
+        options: [
+          "It places all services in kernel space",
+          "Reduced kernel size limits the impact of failures",
+          "It eliminates system calls",
+          "It avoids inter-process communication",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which step occurs first in the system boot process?",
+        options: ["Loading OS kernel", "Power-on self-test (POST)", "User login", "Process scheduling"],
+        answer: 1,
+      },
+      {
+        q: "Which IPC mechanism allows processes to share a common address space?",
+        options: ["Message passing", "Pipes", "Shared memory", "Signals"],
+        answer: 2,
+      },
+      {
+        q: "In message-passing IPC, processes exchange data by:",
+        options: [
+          "Reading and writing shared variables",
+          "Sending and receiving messages through the kernel",
+          "Accessing common files only",
+          "Using global registers",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which scheduling algorithm is non-preemptive?",
+        options: ["Round Robin", "Shortest Remaining Time", "First Come First Served", "Priority (preemptive)"],
+        answer: 2,
+      },
+      {
+        q: "In FCFS scheduling, the process that arrives first is:",
+        options: ["Executed last", "Executed first", "Ignored", "Preempted"],
+        answer: 1,
+      },
+      {
+        q: "The main disadvantage of FCFS is:",
+        options: ["Starvation", "Deadlock", "Convoy effect", "Preemption"],
+        answer: 2,
+      },
+      {
+        q: "SJF scheduling minimizes:",
+        options: ["Turnaround time", "CPU utilization", "Average waiting time", "Response time"],
+        answer: 2,
+      },
+      {
+        q: "Which scheduling algorithm may cause starvation?",
+        options: ["FCFS", "SJF", "Round Robin", "FIFO"],
+        answer: 1,
+      },
+      {
+        q: "Preemptive version of SJF is:",
+        options: ["FCFS", "Priority", "Shortest Remaining Time First", "Round Robin"],
+        answer: 2,
+      },
+      {
+        q: "Round Robin scheduling uses:",
+        options: ["Priority number", "Time quantum", "FIFO queue", "Semaphore"],
+        answer: 1,
+      },
+      {
+        q: "If the time quantum is very large in Round Robin, it behaves like:",
+        options: ["SJF", "Priority", "FCFS", "LIFO"],
+        answer: 2,
+      },
+      {
+        q: "A race condition occurs when:",
+        options: [
+          "Two processes run slowly",
+          "Multiple processes access shared data concurrently",
+          "CPU is idle",
+          "Deadlock occurs",
+        ],
+        answer: 1,
+      },
+      {
+        q: "The critical section problem deals with:",
+        options: ["CPU scheduling", "Memory allocation", "Process synchronization", "Disk management"],
+        answer: 2,
+      },
+      {
+        q: "Peterson's solution is used for:",
+        options: [
+          "Deadlock detection",
+          "Mutual exclusion for two processes",
+          "Paging",
+          "Disk scheduling",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which hardware instruction is used for synchronization?",
+        options: ["MOV", "ADD", "Test-and-Set", "JMP"],
+        answer: 2,
+      },
+      {
+        q: "A mutex lock provides:",
+        options: ["Multiprocessing", "Mutual exclusion", "Deadlock", "Swapping"],
+        answer: 1,
+      },
+      {
+        q: "A semaphore is:",
+        options: [
+          "Hardware device",
+          "Integer variable used for synchronization",
+          "Scheduling algorithm",
+          "Disk block",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Binary semaphore is also called:",
+        options: ["Counting semaphore", "Mutex", "Monitor", "Signal"],
+        answer: 1,
+      },
+      {
+        q: "A monitor provides:",
+        options: [
+          "Low-level synchronization",
+          "High-level synchronization construct",
+          "Disk management",
+          "Paging",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Producer–Consumer problem is solved using:",
+        options: ["Paging", "Semaphores", "Swapping", "Scheduling"],
+        answer: 1,
+      },
+      {
+        q: "Readers–Writers problem deals with:",
+        options: ["CPU scheduling", "Memory allocation", "Shared database access", "Disk scheduling"],
+        answer: 2,
+      },
+      {
+        q: "Dining philosophers problem is an example of:",
+        options: ["Scheduling", "Deadlock", "Paging", "Swapping"],
+        answer: 1,
+      },
+      {
+        q: "Deadlock occurs when ALL of these hold simultaneously:",
+        options: [
+          "CPU idle",
+          "Mutual exclusion + hold and wait + no preemption + circular wait",
+          "Only circular wait",
+          "Only mutual exclusion",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Which is NOT a condition for deadlock?",
+        options: ["Mutual exclusion", "Preemption allowed", "Circular wait", "Hold and wait"],
+        answer: 1,
+      },
+      {
+        q: "Banker's algorithm is used for:",
+        options: ["Deadlock detection", "Deadlock avoidance", "Scheduling", "Paging"],
+        answer: 1,
+      },
+      {
+        q: "In Banker's algorithm, the system must remain in a:",
+        options: ["Deadlock state", "Safe state", "Unsafe state", "Waiting state"],
+        answer: 1,
+      },
+      {
+        q: "Address space refers to:",
+        options: ["Physical memory", "Logical memory of a process", "Disk blocks", "Cache"],
+        answer: 1,
+      },
+      {
+        q: "Logical address is generated by:",
+        options: ["Memory", "CPU", "Disk", "Monitor"],
+        answer: 1,
+      },
+      {
+        q: "Swapping moves processes between:",
+        options: ["Cache and CPU", "RAM and Disk", "Registers", "Stack and Heap"],
+        answer: 1,
+      },
+      {
+        q: "Fixed partition memory allocation suffers from:",
+        options: ["External fragmentation", "Internal fragmentation", "No fragmentation", "Deadlock"],
+        answer: 1,
+      },
+      {
+        q: "Variable partition allocation suffers from:",
+        options: ["Internal fragmentation", "External fragmentation", "No issue", "Deadlock"],
+        answer: 1,
+      },
+      {
+        q: "In segmentation, memory is divided based on:",
+        options: ["Fixed size", "Logical units", "Equal blocks", "Random blocks"],
+        answer: 1,
+      },
+      {
+        q: "Page size in paging is:",
+        options: ["Variable", "Fixed", "Infinite", "Dynamic"],
+        answer: 1,
+      },
+      {
+        q: "Paging eliminates:",
+        options: [
+          "Internal fragmentation",
+          "External fragmentation",
+          "Both fragmentations",
+          "Segmentation",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Virtual memory allows:",
+        options: [
+          "Smaller memory usage",
+          "Larger logical address space than physical memory",
+          "No disk usage",
+          "No swapping",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Demand paging loads pages:",
+        options: ["At startup", "When required", "Never", "Randomly"],
+        answer: 1,
+      },
+      {
+        q: "Page fault occurs when:",
+        options: ["Page is in memory", "Page is not in memory", "CPU idle", "Disk full"],
+        answer: 1,
+      },
+      {
+        q: "Thrashing occurs due to:",
+        options: ["Excessive paging", "CPU overuse", "Disk formatting", "Scheduling"],
+        answer: 0,
+      },
+      {
+        q: "Magnetic disks use:",
+        options: ["Flash memory", "Rotating platters", "RAM", "Registers"],
+        answer: 1,
+      },
+      {
+        q: "SSD is faster than HDD because:",
+        options: ["It has moving parts", "No mechanical movement", "Larger size", "More sectors"],
+        answer: 1,
+      },
+      {
+        q: "SSTF disk scheduling selects the request with:",
+        options: ["Highest priority", "Shortest seek time", "Longest seek", "FIFO order"],
+        answer: 1,
+      },
+      {
+        q: "SCAN disk scheduling is also called:",
+        options: ["FIFO", "Elevator algorithm", "SSTF", "FCFS"],
+        answer: 1,
+      },
+      {
+        q: "Disk formatting prepares a disk for:",
+        options: ["Scheduling", "Data storage", "Swapping", "Paging"],
+        answer: 1,
+      },
+    ],
+  },
+
+  // =====================================================================
+  {
+    title: "Module V",
+    subject: "Digital Signal Processing",
+    questions: [
+      {
+        q: "Which of the following is an example of an elementary signal?",
+        options: ["Random signal", "Sinusoidal signal", "Noise signal", "Speech signal"],
+        answer: 1,
+      },
+      {
+        q: "A discrete-time signal is represented as:",
+        options: ["x(t)", "x[n]", "x(s)", "x(ω)"],
+        answer: 1,
+      },
+      {
+        q: "A signal x[n] is classified as discrete-time because:",
+        options: [
+          "Discrete amplitude values",
+          "Integer-valued independent variable",
+          "Periodic nature",
+          "Finite duration",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Process of converting a continuous-time signal into a discrete-time signal is:",
+        options: ["Filtering", "Sampling", "Convolution", "Quantization"],
+        answer: 1,
+      },
+      {
+        q: "To avoid aliasing, the sampling frequency fs must satisfy:",
+        options: ["fs < 2·fmax", "fs = fmax", "fs ≥ 2·fmax", "fs = 0"],
+        answer: 2,
+      },
+      {
+        q: "An analog signal is sampled at 8 kHz. Sampling period is:",
+        options: ["0.125 ms", "8 ms", "125 μs", "1.25 ms"],
+        answer: 0,
+      },
+      {
+        q: "Which block converts an analog signal into a digital signal in a DSP system?",
+        options: ["DAC", "ADC", "Filter", "FFT processor"],
+        answer: 1,
+      },
+      {
+        q: "Quantization noise is introduced during:",
+        options: ["Sampling", "Filtering", "Quantization (ADC)", "Reconstruction"],
+        answer: 2,
+      },
+      {
+        q: "An LTI system has impulse response h(t). If x(t) = 3δ(t − 2), output y(t) is:",
+        options: ["h(t − 2)", "3h(t)", "3h(t − 2)", "h(3t − 2)"],
+        answer: 2,
+      },
+      {
+        q: "A system is 'Linear' if it follows:",
+        options: [
+          "Inversion and Scaling",
+          "Superposition and Homogeneity",
+          "Causality and Stability",
+          "Differentiation and Integration",
+        ],
+        answer: 1,
+      },
+      {
+        q: "DFT stands for:",
+        options: [
+          "Digital Filter Transform",
+          "Discrete Fourier Transform",
+          "Dual Frequency Token",
+          "Direct Fourier Technique",
+        ],
+        answer: 1,
+      },
+      {
+        q: "An 8-point DFT computed directly requires approximately how many complex multiplications?",
+        options: ["8", "32", "64", "128"],
+        answer: 2,
+      },
+      {
+        q: "Which property guarantees that signal energy in time domain equals energy in transform domain?",
+        options: ["Linearity", "Time invariance", "Parseval's theorem", "Periodicity"],
+        answer: 2,
+      },
+      {
+        q: "The Twiddle factor WN in DFT is defined as:",
+        options: ["e^(−j2π/N)", "e^(j2π/N)", "sin(2π/N)", "cos(2π/N)"],
+        answer: 0,
+      },
+      {
+        q: "Given X(k) = DFT{x(n)}, the IDFT is computed by:",
+        options: [
+          "Summation using the same exponential kernel",
+          "Conjugation of X(k)",
+          "Use of inverse exponential with scaling factor 1/N",
+          "Time reversal of X(k)",
+        ],
+        answer: 2,
+      },
+      {
+        q: "Two length-4 sequences convolved using a 4-point DFT (no zero padding) produces:",
+        options: ["Linear convolution", "Circular convolution", "Aperiodic convolution", "Valid convolution"],
+        answer: 1,
+      },
+      {
+        q: "Circular convolution gives linear filtering when sequences are:",
+        options: ["Padded with zeros", "Multiplied by a window", "Integrated", "Finite and equal to 1"],
+        answer: 0,
+      },
+      {
+        q: "Result of circular convolution of {1,1} and {1,1} is:",
+        options: ["{1,1}", "{2,2}", "{1,2,1}", "{0,0}"],
+        answer: 1,
+      },
+      {
+        q: "Which methods are used for filtering long data sequences?",
+        options: [
+          "Radix-2 and Radix-4",
+          "Overlap-save and Overlap-add",
+          "Impulse Invariance and Bilinear",
+          "DFT and IDFT",
+        ],
+        answer: 1,
+      },
+      {
+        q: "A length-10000 sequence is filtered via FFT-based blocks. Overlap-Add/Save are used to:",
+        options: [
+          "Reduce quantization noise",
+          "Efficiently perform linear convolution using FFT blocks",
+          "Avoid spectral leakage",
+          "Eliminate aliasing",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Radix-2 FFT reduces computational complexity of an N-point DFT from O(N²) to:",
+        options: ["O(N)", "O(N log₂ N)", "O(log N)", "O(N³)"],
+        answer: 1,
+      },
+      {
+        q: "Radix-2 FFT algorithms require the number of samples to be:",
+        options: ["Prime", "Odd", "Power of 2", "Even"],
+        answer: 2,
+      },
+      {
+        q: "In an 8-point Radix-2 FFT, how many stages of butterflies are required?",
+        options: ["2", "3", "4", "8"],
+        answer: 1,
+      },
+      {
+        q: "In Decimation-in-Time (DIT) FFT, the input sequence is in:",
+        options: [
+          "Bit-reversed order",
+          "Natural order",
+          "Sorted by magnitude",
+          "Shifted by N/2",
+        ],
+        answer: 0,
+      },
+      {
+        q: "What is the primary characteristic of an IIR filter?",
+        options: [
+          "Finite number of non-zero terms",
+          "Uses feedback (recursive)",
+          "Impulse response always zero after 10 samples",
+          "Always unstable",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Bilinear Transformation is used to design IIR filters by mapping:",
+        options: [
+          "s-plane to z-plane",
+          "z-plane to time domain",
+          "Analog frequencies to infinity",
+          "Digital filters to FIR filters",
+        ],
+        answer: 0,
+      },
+      {
+        q: "When using bilinear transformation, which effect must be compensated?",
+        options: ["Time-domain aliasing", "Frequency warping", "Phase distortion", "Impulse truncation"],
+        answer: 1,
+      },
+      {
+        q: "Which structure directly implements the difference equation of a system?",
+        options: ["Cascade form", "Parallel form", "Direct form", "Lattice form"],
+        answer: 2,
+      },
+      {
+        q: "Which realization is least sensitive to coefficient quantization for a high-order IIR filter?",
+        options: ["Direct Form-I", "Direct Form-II", "Cascade of second-order sections", "Lattice FIR"],
+        answer: 2,
+      },
+      {
+        q: "An FIR filter has linear phase if its impulse response is:",
+        options: ["Arbitrary", "Causal", "Symmetric or anti-symmetric", "Infinite"],
+        answer: 2,
+      },
+      {
+        q: "Linear phase response is characteristic of which filter type?",
+        options: ["IIR Filter", "FIR Filter", "All-pass Filter", "Butterworth Filter"],
+        answer: 1,
+      },
+      {
+        q: "FIR filter h[n] = {1, 2, 3, 2, 1} exhibits:",
+        options: ["Nonlinear phase", "Minimum phase", "Linear phase", "Zero phase"],
+        answer: 2,
+      },
+      {
+        q: "Which FIR design technique is based on truncation of the ideal impulse response?",
+        options: ["Frequency sampling", "Window method", "Parks–McClellan", "Least squares"],
+        answer: 1,
+      },
+      {
+        q: "Which window provides the narrowest main lobe?",
+        options: ["Rectangular window", "Hamming window", "Hanning window", "Blackman window"],
+        answer: 0,
+      },
+      {
+        q: "If an FIR window length is doubled, the most significant effect is:",
+        options: [
+          "Increased passband ripple",
+          "Wider transition band",
+          "Narrower transition band",
+          "Increased quantization noise",
+        ],
+        answer: 2,
+      },
+      {
+        q: "Harvard architecture separates:",
+        options: ["CPU and ALU", "Program and data memory", "Cache and RAM", "Input and output"],
+        answer: 1,
+      },
+      {
+        q: "Due to Harvard architecture, in a single clock cycle a DSP can perform:",
+        options: [
+          "Two data fetches simultaneously",
+          "Instruction fetch and data fetch simultaneously",
+          "Two instructions executed simultaneously",
+          "Parallel ALU operations only",
+        ],
+        answer: 1,
+      },
+      {
+        q: "MAC stands for:",
+        options: [
+          "Memory Access Control",
+          "Multiply-Accumulate",
+          "Message Authentication Code",
+          "Micro-Address Counter",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Σ x[n]·h[n] is most efficiently computed by which DSP hardware?",
+        options: ["Shifter", "Comparator", "Multiply-Accumulate (MAC) unit", "Address generation unit"],
+        answer: 2,
+      },
+      {
+        q: "A 5-stage DSP pipeline (10 ns/stage) takes how long to complete 10 instructions (ignoring overhead)?",
+        options: ["100 ns", "140 ns", "500 ns", "50 ns"],
+        answer: 1,
+      },
+      {
+        q: "TMS320C67xx is an example of:",
+        options: ["8-bit Microcontroller", "Floating-point DSP", "Fixed-point only Processor", "FPGA"],
+        answer: 1,
+      },
+      {
+        q: "Q15 fixed-point format max positive value is approximately:",
+        options: ["0.99997", "1", "32767", "1.999"],
+        answer: 0,
+      },
+      {
+        q: "Switching from floating-point to fixed-point makes which design requirement critical?",
+        options: [
+          "Instruction pipelining",
+          "Scaling and overflow management",
+          "Cache coherence",
+          "Interrupt latency",
+        ],
+        answer: 1,
+      },
+      {
+        q: "Finite word length effects in IIR filters can cause:",
+        options: ["Limit cycle oscillations", "Linear phase", "Stability improvement", "Reduced noise"],
+        answer: 0,
+      },
+      {
+        q: "An IIR filter with zero input shows constant non-zero output. This is:",
+        options: ["Overflow oscillation", "Limit cycle oscillation", "Aliasing", "Quantization noise"],
+        answer: 1,
+      },
+      {
+        q: "An IIR filter becomes unstable after coefficient quantization due to:",
+        options: ["Round-off noise", "Pole displacement", "Window leakage", "Spectral folding"],
+        answer: 1,
+      },
+    ],
+  },
+]
