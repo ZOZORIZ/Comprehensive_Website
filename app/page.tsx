@@ -1,11 +1,24 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { modules } from '@/lib/questions'
 import { Download } from 'lucide-react'
 import { jsPDF } from 'jspdf'
 
 export default function ExamQuestionsPage() {
+  const [showSplash, setShowSplash] = useState(true)
+  const [fadeOut, setFadeOut] = useState(false)
+
+  useEffect(() => {
+    const fadeTimer = setTimeout(() => setFadeOut(true), 1500)
+    const removeTimer = setTimeout(() => setShowSplash(false), 2000)
+    return () => {
+      clearTimeout(fadeTimer)
+      clearTimeout(removeTimer)
+    }
+  }, [])
+
   const generatePDF = () => {
     const doc = new jsPDF()
     let yPos = 20
@@ -90,6 +103,22 @@ export default function ExamQuestionsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+      {/* Jojo Splash Overlay */}
+      {showSplash && (
+        <div
+          className={`fixed inset-0 z-50 flex items-center justify-center pointer-events-none transition-opacity duration-500 ${
+            fadeOut ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          <div className={`transition-transform duration-500 ${fadeOut ? 'scale-75' : 'scale-100 animate-bounce'}`}>
+            <img
+              src="/jojo.png"
+              alt="Jojo"
+              className="w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 object-contain drop-shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
       <div className="container mx-auto px-4 py-8 max-w-5xl">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
