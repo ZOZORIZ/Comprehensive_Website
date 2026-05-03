@@ -823,7 +823,7 @@ export const modules: Module[] = [
         difficulty: "Hard",
       },
       {
-        q: "A mod-n counter using a synchronous binary up-counter with synchronous clear input has QA and QD connected through an AND gate to the CLEAR input. The value of n is:",
+        q: "A mod-n counter using a synchronous binary up-counter with synchronous clear input is shown. gate to the CLEAR input. The value of n is:",
         options: ["7", "10", "15", "20"],
         answer: 1,
         difficulty: "Hard",
