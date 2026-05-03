@@ -60,9 +60,13 @@ export async function POST(req: Request) {
       },
       body: JSON.stringify({
         model: 'tencent/hy3-preview:free',
-        messages: messages,
+        messages: [
+          { role: 'system', content: 'You are a concise study assistant. Keep your answers brief, clear, and to the point. Do not generate overly long explanations unless explicitly asked.' },
+          ...messages
+        ],
         stream: true,
-        reasoning: { enabled: true }
+        reasoning: { enabled: true },
+        max_tokens: 600
       }),
     });
 
