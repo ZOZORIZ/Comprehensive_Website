@@ -92,6 +92,25 @@ export default function ExamQuestionsPage() {
         })
 
         doc.setTextColor(0, 0, 0)
+
+        // Explanation
+        if (q.explanation) {
+          if (yPos > pageHeight - marginBottom - 15) {
+            doc.addPage()
+            yPos = 20
+          }
+          doc.setFontSize(8)
+          doc.setFont('helvetica', 'italic')
+          doc.setTextColor(150, 100, 0)
+          const explanationLines = doc.splitTextToSize(
+            `💡 ${q.explanation}`,
+            165
+          )
+          doc.text(explanationLines, 24, yPos)
+          yPos += explanationLines.length * lineHeight
+          doc.setTextColor(0, 0, 0)
+        }
+
         yPos += 4 // Space between questions
       })
 
@@ -225,6 +244,14 @@ export default function ExamQuestionsPage() {
                       )
                     })}
                   </div>
+                  {q.explanation && (
+                    <div className="mt-3 ml-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                      <p className="text-sm text-amber-900">
+                        <span className="font-semibold">💡 Explanation:</span>{' '}
+                        {q.explanation}
+                      </p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

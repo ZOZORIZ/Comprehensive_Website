@@ -7,6 +7,8 @@ export type Question = {
   difficulty?: 'Easy' | 'Hard'
   /** optional image path for circuit diagrams etc */
   image?: string
+  /** optional short explanation for hard questions */
+  explanation?: string
 }
 
 export type Module = {
@@ -45,6 +47,7 @@ export const modules: Module[] = [
         options: ["O(n)", "O(n log n)", "O(log n)", "O(n²)"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "Binary search is the classic example — it halves the search space each step. This results in O(log n) time since log₂(n) halvings are needed to reach a single element.",
       },
       {
         q: "Big-O notation is primarily used to describe the:",
@@ -57,6 +60,7 @@ export const modules: Module[] = [
         options: ["O(n)", "O(n log n)", "O(1)", "O(log n)"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "O(1) is constant time — it doesn't grow with input size at all. It beats O(log n), O(n), and O(n log n) for large n.",
       },
       {
         q: "Which notation represents the upper bound of an algorithm's time complexity?",
@@ -93,6 +97,7 @@ export const modules: Module[] = [
         options: ["The first non-zero element", "Total rows, total columns, and total non-zero elements", "Memory addresses", "Zeros"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "The first row of the triplet acts as metadata, storing the matrix dimensions and count of non-zero elements. This helps in memory allocation and traversal.",
       },
       {
         q: "A sparse matrix is best represented using a linked list rather than a 2-D array because it:",
@@ -129,12 +134,14 @@ export const modules: Module[] = [
         options: ["Stack Overflow", "Stack Underflow", "Segmentation Fault", "Deadlock"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "Underflow is the error when popping from an empty stack (no elements to remove). Overflow is the opposite — pushing onto a full stack.",
       },
       {
         q: "If a stack of size 10 has top = 9, what happens on another push?",
         options: ["Underflow", "Successful insertion", "Overflow", "Stack resets"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "With 0-based indexing, top=9 means all 10 slots (0–9) are filled. Another push exceeds capacity, causing a stack overflow.",
       },
       // --- Conversion and Evaluation of Expressions ---
       {
@@ -154,12 +161,14 @@ export const modules: Module[] = [
         options: ["Queue", "Linked List", "Stack", "Binary Tree"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "A stack is used to push operands, then pop and apply operators in the correct order. Its LIFO nature matches the precedence rules of postfix evaluation.",
       },
       {
         q: "Convert the infix expression (A + B) * C to postfix:",
         options: ["ABC*+", "AB+C*", "+AB*C", "*+ABC"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "Parentheses force A+B first → AB+. Then multiply by C → AB+C*. Parenthesized sub-expressions are evaluated before outer operators.",
       },
       {
         q: "Which data structure is used to convert an infix expression to a postfix expression?",
@@ -172,6 +181,7 @@ export const modules: Module[] = [
         options: ["ABC*+", "AB+C*", "+A*BC", "ABC+*"],
         answer: 0,
         difficulty: "Hard",
+        explanation: "Operator precedence: * binds tighter than +. So B*C is evaluated first → BC*. Then A is added → ABC*+.",
       },
       // --- Queues ---
       {
@@ -191,12 +201,14 @@ export const modules: Module[] = [
         options: ["Slow insertion time", "Inability to store strings", "Wastage of memory space", "Difficulty in traversing"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "In a linear queue, dequeued slots at the front cannot be reused even if the rear is full. A circular queue wraps around, reusing freed slots.",
       },
       {
         q: "In a circular queue of size N, how is the Rear pointer updated during an enqueue operation?",
         options: ["Rear = Rear + 1", "Rear = (Rear + 1) % N", "Rear = Rear - 1", "Rear = (Rear % N) + 1"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "The modulo operator (% N) makes the index wrap around from N-1 back to 0. This is what makes the queue 'circular'.",
       },
       {
         q: "A Deque (Double-Ended Queue) allows insertion and deletion at:",
@@ -228,12 +240,14 @@ export const modules: Module[] = [
         options: ["0", "1", "2", "3"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "A DLL node has a 'prev' pointer (to the previous node) and a 'next' pointer (to the next node). These two pointers enable bidirectional traversal.",
       },
       {
         q: "What is the time complexity of deleting the first node of a singly linked list?",
         options: ["O(1)", "O(n)", "O(log n)", "O(n²)"],
         answer: 0,
         difficulty: "Hard",
+        explanation: "Deleting the first node only requires updating the head pointer to point to the second node. No traversal is needed, so it's O(1).",
       },
       {
         q: "In a circular linked list, the next pointer of the last node points to:",
@@ -246,6 +260,7 @@ export const modules: Module[] = [
         options: ["Fixed size", "Lack of direct/random access to elements", "Inefficient insertions", "Slower deletions at the beginning"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "Arrays support O(1) random access via index, but linked lists require sequential traversal. Each node must be visited one by one to reach a target.",
       },
       {
         q: "Time complexity of inserting an element at the beginning of a singly linked list is:",
@@ -258,6 +273,7 @@ export const modules: Module[] = [
         options: ["1", "2", "3", "4"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "When deleting a node, you must update the predecessor's 'next' pointer and the successor's 'prev' pointer. That's 2 pointer updates.",
       },
       // --- Trees & Binary Trees ---
       {
@@ -283,18 +299,21 @@ export const modules: Module[] = [
         options: ["0 or 1 child", "1 or 2 children", "0 or 2 children", "Exactly 2 children"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "A 'full' (strictly) binary tree means every node is either a leaf (0 children) or an internal node with exactly 2 children. No node has just 1 child.",
       },
       {
         q: "Maximum number of nodes in a binary tree of height h (root at height 0)?",
         options: ["2^h", "2^(h+1) - 1", "2h - 1", "h^2"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "Each level l has at most 2^l nodes. Total = 2^0 + 2^1 + ... + 2^h = 2^(h+1) − 1 (geometric series sum).",
       },
       {
         q: "In an array-based binary tree using 0-based indexing, the right child of node at index i is:",
         options: ["2i", "2i + 1", "2i + 2", "i + 2"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "With 0-based indexing: left child = 2i+1, right child = 2i+2. For 1-based indexing it would be 2i and 2i+1 respectively.",
       },
       // --- Tree Traversals & BST ---
       {
@@ -314,18 +333,21 @@ export const modules: Module[] = [
         options: ["Greater than, Less than", "Less than, Greater than", "Equal to, Less than", "Greater than, Equal to"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "The BST property requires all left subtree values < parent < all right subtree values. This ordering is the defining characteristic of a BST.",
       },
       {
         q: "Performing an In-order traversal on a Binary Search Tree (BST) will output the elements in:",
         options: ["Random order", "Descending order", "Ascending order", "Unsorted order"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "In-order visits Left→Root→Right. Since left < root < right in a BST, the output is automatically in ascending sorted order.",
       },
       {
         q: "The postfix expression traversal is functionally equivalent to which tree traversal?",
         options: ["Pre-order", "In-order", "Post-order", "Level-order"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "Post-order visits Left→Right→Root. In expression trees, this yields postfix notation — operands appear before their operator.",
       },
       // --- Graphs ---
       {
@@ -345,12 +367,14 @@ export const modules: Module[] = [
         options: ["Queue", "Stack", "Linked List", "Hash Table"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "DFS uses a stack (explicit or via recursion's call stack) to track which node to visit next. It goes deep before backtracking.",
       },
       {
         q: "Breadth First Search (BFS) is typically implemented using which underlying data structure?",
         options: ["Queue", "Stack", "Linked List", "Hash Table"],
         answer: 0,
         difficulty: "Hard",
+        explanation: "BFS explores level by level, using a queue to process all neighbors before going deeper. FIFO order ensures breadth-first exploration.",
       },
       {
         q: "Which of the following is a common application of graphs?",
@@ -363,6 +387,7 @@ export const modules: Module[] = [
         options: ["O(V)", "O(E)", "O(V + E)", "O(V × E)"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "BFS visits every vertex once (O(V)) and examines every edge once (O(E)). Combined, the total work is O(V + E).",
       },
       {
         q: "Which is an application of Depth First Search (DFS)?",
@@ -374,18 +399,21 @@ export const modules: Module[] = [
         ],
         answer: 2,
         difficulty: "Hard",
+        explanation: "DFS can detect back edges during traversal, which indicate cycles. If a visited node is encountered again on the current path, a cycle exists.",
       },
       {
         q: "Space complexity of an adjacency matrix for a graph with V vertices is:",
         options: ["O(V)", "O(E)", "O(V^2)", "O(V + E)"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "An adjacency matrix uses a V×V 2D array where each cell indicates an edge. This requires V² space regardless of the number of edges.",
       },
       {
         q: "For a sparse graph with very few edges, the most memory-efficient representation is:",
         options: ["Adjacency matrix", "Incidence matrix", "Adjacency list", "Edge list with sorting"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "An adjacency list stores only existing edges, using O(V + E) space. For sparse graphs where E << V², this is much more efficient than a matrix.",
       },
       // --- Sorting Techniques ---
       {
@@ -399,12 +427,14 @@ export const modules: Module[] = [
         options: ["Dynamic Programming", "Greedy Method", "Divide and Conquer", "Backtracking"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "Quick Sort splits the array around a pivot, then recursively sorts each half. This divide-and-conquer approach gives O(n log n) on average.",
       },
       {
         q: "What is the average-case time complexity of Quick Sort?",
         options: ["O(n²)", "O(n)", "O(n log n)", "O(log n)"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "Good pivot choices split the array roughly in half, giving log n levels of recursion, each doing O(n) work. Total: O(n log n).",
       },
       {
         q: "Which sorting technique uses a 'pivot' element to partition the array?",
@@ -417,6 +447,7 @@ export const modules: Module[] = [
         options: ["O(n log n)", "O(n)", "O(n^2)", "O(log n)"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "Worst case occurs when the pivot is always the smallest or largest element (e.g., already sorted input). This creates n levels with O(n) work each.",
       },
       // --- Hashing ---
       {
@@ -436,24 +467,28 @@ export const modules: Module[] = [
         options: ["Folding Method", "Division Method", "Digit Analysis", "Mid-square Method"],
         answer: 3,
         difficulty: "Hard",
+        explanation: "The mid-square method squares the key, then extracts the middle digits as the hash index. Squaring spreads the digits, reducing clustering.",
       },
       {
         q: "In the division method of hashing, the hash function is typically H(k) = k mod M. To minimize collisions, M should ideally be:",
         options: ["An even number", "A power of 2", "A prime number", "A multiple of 10"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "A prime M distributes keys more uniformly because it has no common factors with most key patterns. Powers of 2 or even numbers tend to create clustering.",
       },
       {
         q: "Which collision resolution or hash function technique involves breaking the key into equal-sized pieces and adding them together?",
         options: ["Mid-square Method", "Digit Analysis", "Division Method", "Folding Method"],
         answer: 3,
         difficulty: "Hard",
+        explanation: "Folding divides the key into equal-length parts and sums them to get the hash index. This spreads the influence of all digits across the result.",
       },
       {
         q: "Which collision resolution technique stores all elements that hash to the same slot in a linked list?",
         options: ["Linear Probing", "Quadratic Probing", "Chaining", "Double Hashing"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "Chaining (separate chaining) uses a linked list at each table slot. Colliding elements are simply appended to the list at that index.",
       },
       {
         q: "Digit-analysis hashing yields better key distribution when:",
@@ -465,18 +500,21 @@ export const modules: Module[] = [
         ],
         answer: 1,
         difficulty: "Hard",
+        explanation: "By analyzing the key set, digits with the most variation are selected for hashing. Keys sharing common digit patterns benefit from ignoring uniform positions.",
       },
       {
         q: "Consider the following C program: CountNodes returns 0 if the node is NULL or a leaf (both children NULL), otherwise returns 1 + CountNodes(left) + CountNodes(right). What does CountNodes return when passed the root of a binary tree?",
         options: ["Number of nodes", "Number of leaf nodes", "Number of non-leaf nodes", "Number of leaf nodes minus number of non-leaf nodes"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "The function returns 0 for leaves and NULL, but counts 1 for every non-leaf node. So it tallies all internal (non-leaf) nodes in the tree.",
       },
       {
         q: "Consider a hash table of size 7, starting index 0, and hash function (2x + 5) mod 7. If the table is initially empty, what are the contents after inserting 1, 4, 9, 6 using closed hashing?",
         options: ["9, _, 1, 6, _, _, 4", "1, _, 6, 9, _, _, 4", "4, _, 9, 6, _, _, 1", "1, _, 9, 6, _, _, 4"],
         answer: 3,
         difficulty: "Hard",
+        explanation: "H(1)=0, H(4)=6, H(9)=2, H(6)=3. Place each at its hash index: 1→idx0, 4→idx6, 9→idx2, 6→idx3. Result: [1, _, 9, 6, _, _, 4].",
       },
     ],
   },
@@ -791,18 +829,21 @@ export const modules: Module[] = [
         options: ["30ns", "45ns", "15ns", "60ns"],
         answer: 3,
         difficulty: "Hard",
+        explanation: "All 4 flip-flops must toggle sequentially in a ripple counter. Total delay = 4 × 15ns = 60ns as each flip-flop waits for the previous one.",
       },
       {
         q: "The number of Boolean functions that can be generated by n-variables is equal to:",
         options: ["2ⁿ", "2^(2ⁿ)", "2^(n−1)", "−2ⁿ"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "n variables produce 2ⁿ possible input combinations (rows in truth table). Each combination can be 0 or 1, giving 2^(2ⁿ) total functions.",
       },
       {
         q: "In an 8-bit Johnson counter sequence, how many states orbit patterns are possible?",
         options: ["240", "228", "232", "220"],
         answer: 0,
         difficulty: "Hard",
+        explanation: "An n-bit Johnson counter produces 2n valid states. The remaining 2ⁿ − 2n states form various orbit patterns. For n=8: (256−16)/1 orbit patterns = 240.",
       },
       {
         q: "Which of the following is a valid HDL modeling technique?",
@@ -815,12 +856,14 @@ export const modules: Module[] = [
         options: ["150 micro-sec", "160 micro-sec", "170 micro-sec", "180 micro-sec"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "Period = 1/100kHz = 10 µs per bit. 16 bits × 10 µs = 160 µs total time to shift in all bits serially.",
       },
       {
         q: "What are the minimum number of 2-to-1 multiplexers required to generate a 2-input AND gate and a 2-input EX-OR gate?",
         options: ["1 and 2", "1 and 3", "1 and 1", "2 and 2"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "A 2:1 MUX with one input tied to 0 implements AND (1 MUX). XOR requires cascading 3 MUXes to handle the complementary logic.",
       },
       {
         q: "A mod-n counter using a synchronous binary up-counter with synchronous clear input is shown. gate to the CLEAR input. The value of n is:",
@@ -828,6 +871,43 @@ export const modules: Module[] = [
         answer: 1,
         difficulty: "Hard",
         image: "/mod10_counter.png",
+        explanation: "The AND gate detects state 1010 (decimal 10) and triggers CLEAR, resetting the counter. So it counts 0–9 (10 states), making it mod-10.",
+      },
+      // --- New additions ---
+      {
+        q: "A full adder can be made out of:",
+        options: ["Two half adders", "Two half adders and an OR gate", "Two half adders and a NOT gate", "Three half adders"],
+        answer: 1,
+        difficulty: "Hard",
+        explanation: "Two half adders generate partial sum and carry bits. The OR gate combines the two carry outputs to produce the final carry-out.",
+      },
+      {
+        q: "The 2's complement representation of -17 is:",
+        options: ["101111", "100001", "110011", "101110"],
+        answer: 0,
+        difficulty: "Hard",
+        explanation: "+17 in 6-bit binary is 010001. The 1's complement is 101110. Adding 1 gives the 2's complement: 101111.",
+      },
+      {
+        q: "A digital circuit that can store only one bit is a:",
+        options: ["NOR gate", "Register", "Flip-flop", "XOR gate"],
+        answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "A 4-bit ripple counter and a 4-bit synchronous counter are made using flip-flops having a propagation delay of 10ns each. If the worst-case delay in the ripple counter and the synchronous counter be R and S respectively, then:",
+        options: ["R = 10ns, S = 40ns", "R = 40ns, S = 10ns", "R = 10ns, S = 30ns", "R = 30ns, S = 10ns"],
+        answer: 1,
+        difficulty: "Hard",
+        explanation: "In a ripple counter, delay cascades through all flip-flops: 4 × 10ns = 40ns. In a synchronous counter, all flip-flops are clocked simultaneously, so delay = 10ns.",
+      },
+      {
+        q: "The circuit of the given figure realizes the function:",
+        options: ["Y = (A̅+B̅)C + D̅E̅", "Y = A̅+B̅+C̅+D̅+E̅", "AB + C + DE", "AB + C(D+E)"],
+        answer: 0,
+        difficulty: "Hard",
+        image: "/logic.png",
+        explanation: "Top NAND(A,B)=A̅B̅→(A̅+B̅). Middle NAND with C gives (A̅+B̅)·C. Bottom NAND(D,E)=D̅E̅ inverted back to DE. Final NAND combines them: Y=(A̅+B̅)C+D̅E̅.",
       },
     ],
   },
@@ -1092,42 +1172,49 @@ export const modules: Module[] = [
         options: ["block (index) = 6 bits, word (offset) = 9 bits", "block (index) = 7 bits, word (offset) = 8 bits", "block (index) = 9 bits, word (offset) = 9 bits", "block (index) = 8 bits, word (offset) = 8 bits"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "256K/512 = 512 blocks → 9 index bits. 512 words/block → 9 offset bits. Tag = 6 bits. Total address = 6+9+9 = 24 bits.",
       },
       {
         q: "The memory unit of a computer has 1 Giga words of 64 bits each. The instruction format has 4 fields: an opcode field; a mode field for 12 addressing modes; a register address field for 48 registers; and a memory address field. If an instruction is 64 bits long, how large is the opcode field?",
         options: ["34 bits", "24 bits", "20 bits", "14 bits"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "1G = 2³⁰ words → 30-bit address. Mode: ceil(log₂ 12)=4 bits. Registers: ceil(log₂ 48)=6 bits. Opcode = 64−30−4−6 = 24 bits.",
       },
       {
         q: "A computer has 64-bit instructions and a 28-bit address. Suppose there are 252 two-address instructions. How many 1-address instructions can be formulated?",
         options: ["2^24", "2^26", "2^28", "2^30"],
         answer: 3,
         difficulty: "Hard",
+        explanation: "Opcode for 2-addr = 64−28−28 = 8 bits. 2⁸−252 = 4 unused opcodes expand into 1-addr space. 4 × 2²⁸ = 2² × 2²⁸ = 2³⁰.",
       },
       {
         q: "Determine the number of clock cycles required to process 200 tasks in a six-segment pipeline (assume no stalls, each segment takes 1 cycle):",
         options: ["1200 cycles", "206 cycles", "207 cycles", "205 cycles"],
         answer: 3,
         difficulty: "Hard",
+        explanation: "Pipeline formula: k + (n−1) cycles, where k=stages, n=tasks. So 6 + (200−1) = 6 + 199 = 205 cycles.",
       },
       {
         q: "Match: P.DMA  Q.Processor Status Word  R.Daisy Chaining  S.Handshaking with 1.Priority Interrupt 2.I/O Transfer 3.CPU 4.Asynchronous Data Transfer",
         options: ["P-1, Q-3, R-4, S-2", "P-2, Q-3, R-1, S-4", "P-2, Q-1, R-3, S-4", "P-4, Q-3, R-1, S-2"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "DMA handles I/O transfer (P-2). PSW belongs to the CPU (Q-3). Daisy chaining is a priority interrupt scheme (R-1). Handshaking is asynchronous data transfer (S-4).",
       },
       {
         q: "A computer uses 32-bit byte addressing with a 2-way set associative cache of 32KB capacity. Each cache block contains 16 bytes. The number of bits in TAG, SET, and OFFSET fields are:",
         options: ["TAG=18, SET=10, OFFSET=4", "TAG=16, SET=12, OFFSET=4", "TAG=20, SET=10, OFFSET=2", "TAG=16, SET=8, OFFSET=8"],
         answer: 0,
         difficulty: "Hard",
+        explanation: "32KB/16B = 2048 blocks. 2-way → 1024 sets → 10 set bits. 16B block → 4 offset bits. Tag = 32−10−4 = 18 bits.",
       },
       {
         q: "The Booth recoded form of -6 is:",
         options: ["-1 +1 0 -1 0", "+1 -1 +1 -1 0", "0 -1 +1 -1 0", "0 +1 -1 +1 0"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "-6 in binary (2's complement) is 11010. Appending 0: 110100. Scanning pairs right-to-left and applying Booth's recoding gives 0 -1 +1 -1 0.",
       },
     ],
   },
@@ -1442,12 +1529,14 @@ export const modules: Module[] = [
         options: ["2^12", "2^16", "2^18", "2^28"],
         answer: 3,
         difficulty: "Hard",
+        explanation: "2-byte PTE → 2¹⁶ possible frame numbers. Each frame = 4KB = 2¹² bytes. Total addressable = 2¹⁶ × 2¹² = 2²⁸ bytes.",
       },
       {
         q: "Calculate the internal fragmentation if page size is 4KB and process size is 103KB.",
         options: ["3KB", "4KB", "1KB", "2KB"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "103KB / 4KB = 25 full pages + 3KB remainder. The last page wastes 4KB − 3KB = 1KB of internal fragmentation.",
       },
       {
         q: "Which of the following scheduling policy is likely to improve interactiveness?",
@@ -1460,24 +1549,28 @@ export const modules: Module[] = [
         options: ["41.66", "100.00", "240.00", "60.00"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "12 processes/min × 5 sec each = 60 sec of CPU work per minute. Since 1 minute = 60 sec, the CPU is 100% utilized.",
       },
       {
         q: "A system has two processes and three identical resources. Each process needs a maximum of two resources. This could cause:",
         options: ["Deadlock is possible", "Deadlock is not possible", "Starvation may be present", "Thrashing"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "With 3 resources and max need of 2 each, at least one process can always get both resources and finish. Deadlock is impossible here.",
       },
       {
         q: "A disk has 400 cylinders (0–399). The disk arm is at cylinder 58 with pending requests for cylinders 66, 349, 201, 110, 38, 84, 226, 70, 86. Using SSTF, cylinder 86 is serviced after servicing _____ requests.",
         options: ["1", "2", "3", "4"],
         answer: 3,
         difficulty: "Hard",
+        explanation: "SSTF order from 58: 66→70→84→86. So cylinder 86 is the 4th request serviced (after 66, 70, 84).",
       },
       {
         q: "Which of the following is true with regard to Round Robin scheduling technique?",
         options: ["Responds poorly to short process with small time quantum", "Works like SJF for larger time quantum", "Does not use a prior knowledge of burst times of processes", "Ensure that the ready queue is always of the same size"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "Round Robin assigns equal time slices to all processes without needing to know their burst times. It purely relies on time quantum and arrival order.",
       },
     ],
   },
@@ -1787,12 +1880,14 @@ export const modules: Module[] = [
         options: ["log₂N stages", "2·log₂N stages", "log₂N² stages", "log₂(N/2) stages"],
         answer: 0,
         difficulty: "Hard",
+        explanation: "Both DIT and DIF FFT algorithms require log₂N stages of butterfly operations. Each stage processes N/2 butterflies.",
       },
       {
         q: "The region of convergence of x/(1+2x+x²) is:",
         options: ["0", "1", "Negative", "Positive"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "x/(1+2x+x²) = x/(1+x)². The poles are at x = -1. The ROC excludes the pole, so |x| < 1 converges, giving ROC boundary at 1.",
       },
       {
         q: "A signal x[n] is anti-symmetric or odd when:",
@@ -1805,6 +1900,7 @@ export const modules: Module[] = [
         options: ["2N·log₂N² computations", "(N·log₂N)²/2 computations", "(N·log₂N)/2 computations", "(N·log₂2N)/2 computations"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "Radix-2 FFT has log₂N stages, each with N/2 butterflies (1 multiplication each). Total complex multiplications ≈ (N/2)·log₂N = (N·log₂N)/2.",
       },
       {
         q: "The scaling of a sequence x[n] by a factor α is given by:",
@@ -1817,18 +1913,61 @@ export const modules: Module[] = [
         options: ["5 to 10", "12 to 14", "20 to 24", "28 to 40"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "12–14 bits provides sufficient precision for cascade FIR coefficients to minimize quantization effects while keeping hardware practical.",
       },
       {
         q: "The impulse response of a continuous time system is h(t) = δ(t−1) + δ(t−3). The value of the step response at t = 2 is:",
         options: ["0", "1", "2", "3"],
         answer: 1,
         difficulty: "Hard",
+        explanation: "Step response = integral of h(t) from -∞ to t. At t=2: δ(t-1) has fired (contributes 1), but δ(t-3) has not (t=2 < 3). So step response = 1.",
       },
       {
         q: "A 1 kHz sinusoidal signal is ideally sampled at 1500 samples/sec and the sampled signal is passed through an ideal low-pass filter with cut-off frequency 800 Hz. The output signal has the frequency:",
         options: ["0 Hz", "0.75 kHz", "0.5 kHz", "0.25 kHz"],
         answer: 2,
         difficulty: "Hard",
+        explanation: "fs=1500 Hz, f=1000 Hz. Since f > fs/2 (750 Hz), aliasing occurs. Alias frequency = fs − f = 1500 − 1000 = 500 Hz = 0.5 kHz, which passes through the 800 Hz LPF.",
+      },
+      // --- New additions ---
+      {
+        q: "For an N point FFT algorithm with N = 2^m, which one of the following statements is true?",
+        options: [
+          "It is not possible to construct a signal flow graph with both input and output in normal order",
+          "The number of butterflies in the m-th stage is N/m",
+          "In-place computation requires storage of only 2N node data",
+          "Computation of a butterfly requires only one complex multiplication",
+        ],
+        answer: 3,
+        difficulty: "Hard",
+        explanation: "Each butterfly operation in the Radix-2 FFT involves multiplying one input by a twiddle factor (1 complex multiplication) and performing 2 complex additions.",
+      },
+      {
+        q: "The transformation technique in which there is one-to-one mapping from s-domain to z-domain is:",
+        options: ["Approximation of derivatives", "Impulse invariance method", "Bilinear transformation method", "Backward difference for the derivative"],
+        answer: 2,
+        difficulty: "Hard",
+        explanation: "Bilinear transformation maps the entire jΩ axis in s-plane to the unit circle in z-plane without aliasing, providing a one-to-one mapping.",
+      },
+      {
+        q: "Which of the following methods are used to convert an analog filter into a digital filter?",
+        options: ["Approximation of Derivatives", "Bilinear transformation", "Impulse invariance", "All of the mentioned"],
+        answer: 3,
+        difficulty: "Easy",
+      },
+      {
+        q: "A digital filter is said to be an IIR if:",
+        options: ["It oscillates", "All its poles lie outside the unit circle", "Present output depends on previous output", "One or more denominator coefficient is zero"],
+        answer: 2,
+        difficulty: "Hard",
+        explanation: "IIR (Infinite Impulse Response) filters use feedback — the current output depends on past outputs, making the impulse response theoretically infinite.",
+      },
+      {
+        q: "The 4-point Discrete Fourier Transform (DFT) of a discrete time sequence {1, 0, 2, 3} is:",
+        options: ["[0, -2+2j, 2, -2-2j]", "[2, 2+2j, 6, 2-2j]", "[6, 1-3j, 2, 1+3j]", "[6, -1+3j, 0, -1-3j]"],
+        answer: 3,
+        difficulty: "Hard",
+        explanation: "X(0)=1+0+2+3=6. X(1)=1+0·(-j)+2·(-1)+3·(j)=-1+3j. X(2)=1+0·(-1)+2·(1)+3·(-1)=0. X(3)=1+0·(j)+2·(-1)+3·(-j)=-1-3j.",
       },
     ],
   },
