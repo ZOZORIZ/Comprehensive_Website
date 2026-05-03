@@ -112,6 +112,20 @@ export default function ExamQuestionsPage() {
             <Download className="mr-2 h-5 w-5" />
             Download PDF
           </Button>
+
+          {/* Aswin's Quote */}
+          <div className="mt-6 flex flex-col items-center sm:items-start">
+            <div className="rounded-xl overflow-hidden shadow-md border border-gray-700 bg-transparent w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px]">
+              <img
+                src="/aswin.png"
+                alt="Aswin's motivational quote"
+                className="w-full h-auto block"
+              />
+            </div>
+            <p className="text-xs text-gray-400 mt-2 italic text-center sm:text-left">
+              — by not aswin
+            </p>
+          </div>
         </div>
 
         {/* Questions Display */}
@@ -133,11 +147,10 @@ export default function ExamQuestionsPage() {
                       {qIndex + 1}. {q.q}
                     </p>
                     {q.difficulty && (
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap ${
-                        q.difficulty === 'Easy'
-                          ? 'bg-green-100 text-green-800 border border-green-300'
-                          : 'bg-red-100 text-red-800 border border-red-300'
-                      }`}>
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap ${q.difficulty === 'Easy'
+                        ? 'bg-green-100 text-green-800 border border-green-300'
+                        : 'bg-red-100 text-red-800 border border-red-300'
+                        }`}>
                         {q.difficulty}
                       </span>
                     )}
