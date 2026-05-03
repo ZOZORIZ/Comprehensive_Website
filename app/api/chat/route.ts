@@ -60,7 +60,7 @@ export async function POST(req: Request) {
 
     // 3. Make Streaming API Call
     const responseStream = await ai.models.generateContentStream({
-      model: 'gemma-4-31b-a4b-it',
+      model: 'gemma-4-31b-it',
       contents: formattedMessages,
       config: {
         systemInstruction: 'You are a concise study assistant. Keep your answers brief, clear, and to the point. Do not generate overly long explanations unless explicitly asked.',
