@@ -20,7 +20,15 @@ export function ChatBot() {
   ])
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [cooldown, setCooldown] = useState(0)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (cooldown > 0) {
+      const timer = setTimeout(() => setCooldown(cooldown - 1), 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [cooldown])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -31,13 +39,14 @@ export function ChatBot() {
   }, [messages])
 
   const handleSend = async () => {
-    if (!input.trim() || isLoading) return
+    if (!input.trim() || isLoading || cooldown > 0) return
 
     const userMessage: Message = { role: 'user', content: input.trim() }
     const newMessages = [...messages, userMessage]
     setMessages(newMessages)
     setInput('')
     setIsLoading(true)
+    setCooldown(10)
 
     try {
       const response = await fetch('/api/chat', {
@@ -171,12 +180,13 @@ export function ChatBot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                placeholder="Ask a question..."
-                className="w-full pl-4 pr-12 py-3 rounded-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white"
+                placeholder={cooldown > 0 ? `Please wait ${cooldown}s...` : "Ask a question..."}
+                disabled={isLoading || cooldown > 0}
+                className="w-full pl-4 pr-12 py-3 rounded-full border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:text-white disabled:opacity-50"
               />
               <button 
                 onClick={handleSend}
-                disabled={!input.trim() || isLoading}
+                disabled={!input.trim() || isLoading || cooldown > 0}
                 className="absolute right-1.5 top-1.5 p-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 disabled:opacity-50 transition-colors"
               >
                 <Send className="w-4 h-4" />
