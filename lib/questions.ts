@@ -874,7 +874,7 @@ export const modules: Module[] = [
         answer: 0,
         difficulty: "Hard",
         image: "/mod10_counter.png",
-        explanation: "The AND gate detects state 1010 (decimal 10) and triggers CLEAR, resetting the counter. So it counts 0–9 (10 states), making it mod-10.",
+        explanation: "The AND gate detects state 0110 (decimal 6) and triggers CLEAR, resetting the counter. So it counts 0–6 (7 states), making it mod-7.",
       },
       // --- New additions ---
       {
