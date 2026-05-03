@@ -48,8 +48,9 @@ export default function ExamQuestionsPage() {
         // Question text
         doc.setFontSize(10)
         doc.setFont('helvetica', 'bold')
+        const diffTag = q.difficulty ? `[${q.difficulty}] ` : ''
         const questionLines = doc.splitTextToSize(
-          `${questionNum}. ${q.q}`,
+          `${questionNum}. ${diffTag}${q.q}`,
           180
         )
         doc.text(questionLines, 14, yPos)
@@ -127,9 +128,20 @@ export default function ExamQuestionsPage() {
             <div className="space-y-8">
               {module.questions.map((q, qIndex) => (
                 <div key={qIndex} className="border-l-4 border-indigo-200 pl-4">
-                  <p className="font-semibold text-gray-900 mb-3">
-                    {qIndex + 1}. {q.q}
-                  </p>
+                  <div className="flex items-start gap-2 mb-3">
+                    <p className="font-semibold text-gray-900">
+                      {qIndex + 1}. {q.q}
+                    </p>
+                    {q.difficulty && (
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap ${
+                        q.difficulty === 'Easy'
+                          ? 'bg-green-100 text-green-800 border border-green-300'
+                          : 'bg-red-100 text-red-800 border border-red-300'
+                      }`}>
+                        {q.difficulty}
+                      </span>
+                    )}
+                  </div>
                   <div className="space-y-2 ml-4">
                     {q.options.map((opt, optIndex) => {
                       const isCorrect = optIndex === q.answer

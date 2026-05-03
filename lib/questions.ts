@@ -3,6 +3,8 @@ export type Question = {
   options: [string, string, string, string]
   /** index of correct option, 0-3 */
   answer: 0 | 1 | 2 | 3
+  /** difficulty level */
+  difficulty?: 'Easy' | 'Hard'
 }
 
 export type Module = {
@@ -17,15 +19,48 @@ export const modules: Module[] = [
     title: "Module I",
     subject: "Data Structures",
     questions: [
+      // --- Algorithms, Complexity & Asymptotic Notation ---
       {
-        q: "Which asymptotic notation provides a tight bound on the execution time of an algorithm?",
-        options: ["O (Big-Oh)", "Ω (Big-Omega)", "Θ (Big-Theta)", "Little-oh"],
+        q: "The measure of the amount of memory an algorithm requires during its execution is called:",
+        options: ["Time Complexity", "Space Complexity", "Algorithmic Size", "Processor Load"],
+        answer: 1,
+        difficulty: "Easy",
+      },
+      {
+        q: "Which asymptotic notation provides a tight bound (both upper and lower) on the growth of an algorithm?",
+        options: ["Big-O (O)", "Big-Omega (Ω)", "Theta (Θ)", "Little-o (o)"],
         answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "The worst-case time complexity of accessing an element in an array by its index is:",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        answer: 0,
+        difficulty: "Easy",
+      },
+      {
+        q: "If an algorithm divides the input size by half at each step, its time complexity is typically:",
+        options: ["O(n)", "O(n log n)", "O(log n)", "O(n²)"],
+        answer: 2,
+        difficulty: "Hard",
+      },
+      {
+        q: "Big-O notation is primarily used to describe the:",
+        options: ["Best-case scenario", "Average-case scenario", "Worst-case scenario", "Memory allocation"],
+        answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "Which of the following time complexities represents the fastest algorithm for large values of n?",
+        options: ["O(n)", "O(n log n)", "O(1)", "O(log n)"],
+        answer: 2,
+        difficulty: "Hard",
       },
       {
         q: "Which notation represents the upper bound of an algorithm's time complexity?",
         options: ["Ω (Omega)", "Θ (Theta)", "O (Big-O)", "δ (Delta)"],
         answer: 2,
+        difficulty: "Easy",
       },
       {
         q: "Which of the following best describes time complexity?",
@@ -36,26 +71,26 @@ export const modules: Module[] = [
           "Size of the output",
         ],
         answer: 1,
+        difficulty: "Easy",
+      },
+      // --- Sparse Matrix ---
+      {
+        q: "A sparse matrix is defined as a matrix in which:",
+        options: ["All elements are zero", "Most elements are non-zero", "Most elements are zero", "Diagonal elements are zero"],
+        answer: 2,
+        difficulty: "Easy",
       },
       {
-        q: "Space complexity is defined as:",
-        options: [
-          "The number of steps an algorithm takes",
-          "The maximum memory space required by an algorithm during execution",
-          "The disk space used to store the code",
-          "The time taken for memory allocation",
-        ],
-        answer: 1,
+        q: "To save memory, a sparse matrix is often represented using a 3-tuple format containing:",
+        options: ["Row, Column, Value", "Size, Dimension, Value", "X, Y, Z coordinates", "Pointer, Node, Data"],
+        answer: 0,
+        difficulty: "Easy",
       },
       {
-        q: "A sparse matrix is best defined as a matrix where:",
-        options: [
-          "All elements are zero",
-          "Most of the elements are zero",
-          "The determinant is zero",
-          "It has more rows than columns",
-        ],
+        q: "In the triplet representation of a sparse matrix, the first row typically stores:",
+        options: ["The first non-zero element", "Total rows, total columns, and total non-zero elements", "Memory addresses", "Zeros"],
         answer: 1,
+        difficulty: "Hard",
       },
       {
         q: "A sparse matrix is best represented using a linked list rather than a 2-D array because it:",
@@ -66,101 +101,266 @@ export const modules: Module[] = [
           "Allows constant-time random access",
         ],
         answer: 1,
+        difficulty: "Easy",
       },
+      // --- Stacks ---
       {
-        q: "Which data structure follows the LIFO principle?",
-        options: ["Queue", "Linked List", "Stack", "Binary Tree"],
-        answer: 2,
-      },
-      {
-        q: "Which data structure follows the FIFO principle?",
-        options: ["Stack", "Queue", "Tree", "Graph"],
+        q: "A stack follows which underlying principle?",
+        options: ["First-In, First-Out (FIFO)", "Last-In, First-Out (LIFO)", "Random Access", "Highest Priority First"],
         answer: 1,
+        difficulty: "Easy",
       },
       {
-        q: "Which data structure is used to convert an infix expression to a postfix expression?",
-        options: ["Queue", "Tree", "Stack", "Array"],
+        q: "The operation of adding an element to the top of a stack is called:",
+        options: ["Pop", "Enqueue", "Push", "Insert"],
         answer: 2,
+        difficulty: "Easy",
       },
       {
-        q: "Convert the infix expression A + B * C to postfix:",
-        options: ["ABC*+", "AB+C*", "+A*BC", "ABC+*"],
+        q: "The operation of removing an element from a stack is called:",
+        options: ["Pop", "Push", "Dequeue", "Delete"],
         answer: 0,
+        difficulty: "Easy",
+      },
+      {
+        q: "What condition occurs when you attempt to pop an element from an empty stack?",
+        options: ["Stack Overflow", "Stack Underflow", "Segmentation Fault", "Deadlock"],
+        answer: 1,
+        difficulty: "Hard",
       },
       {
         q: "If a stack of size 10 has top = 9, what happens on another push?",
         options: ["Underflow", "Successful insertion", "Overflow", "Stack resets"],
         answer: 2,
+        difficulty: "Hard",
+      },
+      // --- Conversion and Evaluation of Expressions ---
+      {
+        q: "The expression A + B is written in which format?",
+        options: ["Prefix", "Postfix", "Infix", "Polish Notation"],
+        answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "The postfix equivalent of the infix expression A * B is:",
+        options: ["*AB", "AB*", "A*B", "*BA"],
+        answer: 1,
+        difficulty: "Easy",
+      },
+      {
+        q: "Which data structure is best suited for evaluating postfix expressions?",
+        options: ["Queue", "Linked List", "Stack", "Binary Tree"],
+        answer: 2,
+        difficulty: "Hard",
+      },
+      {
+        q: "Convert the infix expression (A + B) * C to postfix:",
+        options: ["ABC*+", "AB+C*", "+AB*C", "*+ABC"],
+        answer: 1,
+        difficulty: "Hard",
+      },
+      {
+        q: "Which data structure is used to convert an infix expression to a postfix expression?",
+        options: ["Queue", "Tree", "Stack", "Array"],
+        answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "Convert the infix expression A + B * C to postfix:",
+        options: ["ABC*+", "AB+C*", "+A*BC", "ABC+*"],
+        answer: 0,
+        difficulty: "Hard",
+      },
+      // --- Queues ---
+      {
+        q: "A queue operates on which principle?",
+        options: ["Last-In, First-Out (LIFO)", "First-In, First-Out (FIFO)", "First-In, Last-Out (FILO)", "Random Access"],
+        answer: 1,
+        difficulty: "Easy",
+      },
+      {
+        q: "In a standard queue, insertions take place at the _____ and deletions take place at the _____.",
+        options: ["Front, Rear", "Rear, Front", "Top, Bottom", "Middle, End"],
+        answer: 1,
+        difficulty: "Easy",
+      },
+      {
+        q: "A circular queue is specifically designed to solve which problem found in a linear queue?",
+        options: ["Slow insertion time", "Inability to store strings", "Wastage of memory space", "Difficulty in traversing"],
+        answer: 2,
+        difficulty: "Hard",
+      },
+      {
+        q: "In a circular queue of size N, how is the Rear pointer updated during an enqueue operation?",
+        options: ["Rear = Rear + 1", "Rear = (Rear + 1) % N", "Rear = Rear - 1", "Rear = (Rear % N) + 1"],
+        answer: 1,
+        difficulty: "Hard",
       },
       {
         q: "A Deque (Double-Ended Queue) allows insertion and deletion at:",
         options: ["Only the front", "Only the rear", "Both front and rear", "The middle only"],
         answer: 2,
+        difficulty: "Easy",
+      },
+      // --- Linked Lists ---
+      {
+        q: "A singly linked list node contains:",
+        options: ["Data only", "Pointer to next node only", "Data and pointer to the next node", "Data, previous pointer, and next pointer"],
+        answer: 2,
+        difficulty: "Easy",
       },
       {
-        q: "In a singly linked list, each node contains:",
-        options: ["Data and two pointers", "Only data", "Data and one pointer", "Only pointer"],
-        answer: 2,
+        q: "The last node of a singly linked list always points to:",
+        options: ["The Head", "NULL", "The previous node", "A random memory address"],
+        answer: 1,
+        difficulty: "Easy",
       },
       {
-        q: "Which linked list allows traversal in both directions?",
-        options: ["Singly linked list", "Circular linked list", "Doubly linked list", "Linear list"],
+        q: "Which linked list allows traversal in both forward and backward directions?",
+        options: ["Singly Linked List", "Circular Linked List", "Doubly Linked List", "Stack List"],
         answer: 2,
+        difficulty: "Easy",
       },
       {
-        q: "In a circular linked list, the last node points to:",
-        options: ["NULL", "The middle node", "The first node", "Itself only"],
+        q: "In a doubly linked list, each node contains how many pointers?",
+        options: ["0", "1", "2", "3"],
         answer: 2,
+        difficulty: "Hard",
+      },
+      {
+        q: "What is the time complexity of deleting the first node of a singly linked list?",
+        options: ["O(1)", "O(n)", "O(log n)", "O(n²)"],
+        answer: 0,
+        difficulty: "Hard",
+      },
+      {
+        q: "In a circular linked list, the next pointer of the last node points to:",
+        options: ["NULL", "The second node", "The Head (first node)", "The previous node"],
+        answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "Which of the following is a disadvantage of linked lists compared to arrays?",
+        options: ["Fixed size", "Lack of direct/random access to elements", "Inefficient insertions", "Slower deletions at the beginning"],
+        answer: 1,
+        difficulty: "Hard",
       },
       {
         q: "Time complexity of inserting an element at the beginning of a singly linked list is:",
         options: ["O(1)", "O(n)", "O(log n)", "O(n^2)"],
         answer: 0,
+        difficulty: "Easy",
       },
       {
         q: "In a Doubly Linked List, deleting a node requires updating how many pointers?",
         options: ["1", "2", "3", "4"],
         answer: 1,
+        difficulty: "Hard",
       },
+      // --- Trees & Binary Trees ---
       {
-        q: "Which traversal of a binary tree visits the root node first?",
-        options: ["Inorder", "Preorder", "Postorder", "Level order"],
+        q: "A tree is classified as a:",
+        options: ["Linear data structure", "Non-linear data structure", "Stack-based structure", "Queue-based structure"],
         answer: 1,
+        difficulty: "Easy",
       },
       {
-        q: "Which traversal of a Binary Search Tree (BST) produces elements in sorted order?",
-        options: ["Pre-order", "In-order", "Post-order", "Level-order"],
+        q: "In a binary tree, what is the maximum number of children a node can have?",
+        options: ["1", "2", "3", "Unlimited"],
         answer: 1,
+        difficulty: "Easy",
       },
       {
-        q: "In a BST, the left child contains values:",
-        options: ["Greater than the root", "Equal to the root", "Less than the root", "Random values"],
+        q: "The top-most node of a tree is called the:",
+        options: ["Leaf", "Branch", "Root", "Edge"],
         answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "A full binary tree (or strictly binary tree) is one where every node has either:",
+        options: ["0 or 1 child", "1 or 2 children", "0 or 2 children", "Exactly 2 children"],
+        answer: 2,
+        difficulty: "Hard",
       },
       {
         q: "Maximum number of nodes in a binary tree of height h (root at height 0)?",
         options: ["2^h", "2^(h+1) - 1", "2h - 1", "h^2"],
         answer: 1,
+        difficulty: "Hard",
       },
       {
         q: "In an array-based binary tree using 0-based indexing, the right child of node at index i is:",
         options: ["2i", "2i + 1", "2i + 2", "i + 2"],
         answer: 2,
+        difficulty: "Hard",
+      },
+      // --- Tree Traversals & BST ---
+      {
+        q: "Which tree traversal visits nodes in the order: Left Subtree, Root, Right Subtree?",
+        options: ["Pre-order", "In-order", "Post-order", "Level-order"],
+        answer: 1,
+        difficulty: "Easy",
+      },
+      {
+        q: "Which traversal visits nodes in the order: Root, Left Subtree, Right Subtree?",
+        options: ["Pre-order", "In-order", "Post-order", "Level-order"],
+        answer: 0,
+        difficulty: "Easy",
+      },
+      {
+        q: "In a Binary Search Tree (BST), the left child of a node is always _____ the parent, and the right child is always _____ the parent.",
+        options: ["Greater than, Less than", "Less than, Greater than", "Equal to, Less than", "Greater than, Equal to"],
+        answer: 1,
+        difficulty: "Hard",
+      },
+      {
+        q: "Performing an In-order traversal on a Binary Search Tree (BST) will output the elements in:",
+        options: ["Random order", "Descending order", "Ascending order", "Unsorted order"],
+        answer: 2,
+        difficulty: "Hard",
+      },
+      {
+        q: "The postfix expression traversal is functionally equivalent to which tree traversal?",
+        options: ["Pre-order", "In-order", "Post-order", "Level-order"],
+        answer: 2,
+        difficulty: "Hard",
+      },
+      // --- Graphs ---
+      {
+        q: "A graph is a collection of:",
+        options: ["Stacks and Queues", "Trees and Leaves", "Vertices (Nodes) and Edges", "Arrays and Pointers"],
+        answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "Which algorithm explores a graph by going as deep as possible before backtracking?",
+        options: ["Breadth First Search (BFS)", "Depth First Search (DFS)", "Binary Search", "Quick Sort"],
+        answer: 1,
+        difficulty: "Easy",
+      },
+      {
+        q: "Depth First Search (DFS) is typically implemented using which underlying data structure?",
+        options: ["Queue", "Stack", "Linked List", "Hash Table"],
+        answer: 1,
+        difficulty: "Hard",
+      },
+      {
+        q: "Breadth First Search (BFS) is typically implemented using which underlying data structure?",
+        options: ["Queue", "Stack", "Linked List", "Hash Table"],
+        answer: 0,
+        difficulty: "Hard",
+      },
+      {
+        q: "Which of the following is a common application of graphs?",
+        options: ["Evaluating math expressions", "Undo features in editors", "Finding the shortest path in GPS routing", "CPU scheduling"],
+        answer: 2,
+        difficulty: "Easy",
       },
       {
         q: "Time complexity of BFS on a graph with V vertices and E edges?",
         options: ["O(V)", "O(E)", "O(V + E)", "O(V × E)"],
         answer: 2,
-      },
-      {
-        q: "Which data structure is primarily used in Breadth First Search (BFS)?",
-        options: ["Stack", "Queue", "Heap", "Tree"],
-        answer: 1,
-      },
-      {
-        q: "Which traversal algorithm uses a stack or recursion internally?",
-        options: ["Breadth First Search", "Depth First Search", "Dijkstra's algorithm", "Prim's algorithm"],
-        answer: 1,
+        difficulty: "Hard",
       },
       {
         q: "Which is an application of Depth First Search (DFS)?",
@@ -171,66 +371,87 @@ export const modules: Module[] = [
           "Priority scheduling",
         ],
         answer: 2,
+        difficulty: "Hard",
       },
       {
         q: "Space complexity of an adjacency matrix for a graph with V vertices is:",
         options: ["O(V)", "O(E)", "O(V^2)", "O(V + E)"],
         answer: 2,
+        difficulty: "Hard",
       },
       {
         q: "For a sparse graph with very few edges, the most memory-efficient representation is:",
         options: ["Adjacency matrix", "Incidence matrix", "Adjacency list", "Edge list with sorting"],
         answer: 2,
+        difficulty: "Hard",
+      },
+      // --- Sorting Techniques ---
+      {
+        q: "Which sorting algorithm builds the final sorted array one element at a time by picking the next element and placing it into its correct position?",
+        options: ["Quick Sort", "Hashing", "Insertion Sort", "Depth First Search"],
+        answer: 2,
+        difficulty: "Easy",
+      },
+      {
+        q: "Quick Sort uses which algorithm design paradigm?",
+        options: ["Dynamic Programming", "Greedy Method", "Divide and Conquer", "Backtracking"],
+        answer: 2,
+        difficulty: "Hard",
+      },
+      {
+        q: "What is the average-case time complexity of Quick Sort?",
+        options: ["O(n²)", "O(n)", "O(n log n)", "O(log n)"],
+        answer: 2,
+        difficulty: "Hard",
       },
       {
         q: "Which sorting technique uses a 'pivot' element to partition the array?",
         options: ["Insertion Sort", "Quick Sort", "Bubble Sort", "Selection Sort"],
         answer: 1,
-      },
-      {
-        q: "Average time complexity of Quick Sort is:",
-        options: ["O(n)", "O(n log n)", "O(n^2)", "O(log n)"],
-        answer: 1,
+        difficulty: "Easy",
       },
       {
         q: "Worst-case time complexity of Quick Sort is:",
         options: ["O(n log n)", "O(n)", "O(n^2)", "O(log n)"],
         answer: 2,
+        difficulty: "Hard",
+      },
+      // --- Hashing ---
+      {
+        q: "Hashing is primarily used for:",
+        options: ["Very fast data retrieval (search)", "Sorting data efficiently", "Drawing graph edges", "Balancing binary trees"],
+        answer: 0,
+        difficulty: "Easy",
       },
       {
-        q: "Hashing maps a large range of keys into:",
-        options: [
-          "A larger range of indices",
-          "A smaller range of index positions",
-          "A linked list always",
-          "A binary tree",
-        ],
+        q: "A 'collision' in hashing occurs when:",
+        options: ["The hash table runs out of memory", "Two different keys generate the same hash index", "A key generates a negative index", "The hash function crashes"],
         answer: 1,
+        difficulty: "Easy",
       },
       {
-        q: "Collision in hashing occurs when:",
-        options: [
-          "Hash table is full",
-          "Two keys map to the same address",
-          "Key size is large",
-          "Table size is prime",
-        ],
-        answer: 1,
+        q: "Which hashing method squares the key and uses the middle digits of the result as the index?",
+        options: ["Folding Method", "Division Method", "Digit Analysis", "Mid-square Method"],
+        answer: 3,
+        difficulty: "Hard",
+      },
+      {
+        q: "In the division method of hashing, the hash function is typically H(k) = k mod M. To minimize collisions, M should ideally be:",
+        options: ["An even number", "A power of 2", "A prime number", "A multiple of 10"],
+        answer: 2,
+        difficulty: "Hard",
+      },
+      {
+        q: "Which collision resolution or hash function technique involves breaking the key into equal-sized pieces and adding them together?",
+        options: ["Mid-square Method", "Digit Analysis", "Division Method", "Folding Method"],
+        answer: 3,
+        difficulty: "Hard",
       },
       {
         q: "Which collision resolution technique stores all elements that hash to the same slot in a linked list?",
         options: ["Linear Probing", "Quadratic Probing", "Chaining", "Double Hashing"],
         answer: 2,
-      },
-      {
-        q: "In the Mid-square hashing function, the hash is obtained by:",
-        options: [
-          "Dividing key by a prime number",
-          "Squaring the key and extracting middle digits",
-          "Folding the key into parts",
-          "Converting key to binary",
-        ],
-        answer: 1,
+        difficulty: "Hard",
       },
       {
         q: "Digit-analysis hashing yields better key distribution when:",
@@ -241,6 +462,7 @@ export const modules: Module[] = [
           "Collision resolution uses chaining",
         ],
         answer: 1,
+        difficulty: "Hard",
       },
     ],
   },
