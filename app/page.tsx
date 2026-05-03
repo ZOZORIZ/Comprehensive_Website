@@ -3,12 +3,14 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { modules } from '@/lib/questions'
-import { Download } from 'lucide-react'
+import { Download, Menu, X } from 'lucide-react'
 import { jsPDF } from 'jspdf'
+import Link from 'next/link'
 
 export default function ExamQuestionsPage() {
   const [showSplash, setShowSplash] = useState(true)
   const [fadeOut, setFadeOut] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const fadeTimer = setTimeout(() => setFadeOut(true), 1500)
@@ -138,7 +140,37 @@ export default function ExamQuestionsPage() {
           </div>
         </div>
       )}
-      <div className="container mx-auto px-4 py-8 max-w-5xl">
+      <div className="container mx-auto px-4 py-8 max-w-5xl relative">
+        {/* Hamburger Menu */}
+        <div className="fixed top-4 right-4 z-40">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="p-2.5 bg-white rounded-full shadow-lg border border-gray-200 hover:bg-indigo-50 hover:border-indigo-300 transition-all duration-200"
+            aria-label="Menu"
+          >
+            {menuOpen ? (
+              <X className="h-5 w-5 text-gray-700" />
+            ) : (
+              <Menu className="h-5 w-5 text-gray-700" />
+            )}
+          </button>
+
+          {menuOpen && (
+            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+              <Link
+                href="/practice"
+                className="flex items-center gap-3 px-4 py-3 hover:bg-indigo-50 transition-colors group"
+                onClick={() => setMenuOpen(false)}
+              >
+                <span className="text-xl">📝</span>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900 group-hover:text-indigo-700">Try Practice Questions</p>
+                  <p className="text-xs text-gray-500">50 random MCQs, timed quiz</p>
+                </div>
+              </Link>
+            </div>
+          )}
+        </div>
         {/* Header */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
