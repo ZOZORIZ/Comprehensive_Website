@@ -142,6 +142,15 @@ export default function ExamQuestionsPage() {
                       </span>
                     )}
                   </div>
+                  {q.image && (
+                    <div className="my-3 ml-4">
+                      <img
+                        src={q.image}
+                        alt="Question diagram"
+                        className="max-w-sm rounded-lg border border-gray-200 shadow-sm"
+                      />
+                    </div>
+                  )}
                   <div className="space-y-2 ml-4">
                     {q.options.map((opt, optIndex) => {
                       const isCorrect = optIndex === q.answer
