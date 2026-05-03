@@ -30,6 +30,7 @@ export const metadata: Metadata = {
 }
 
 import { ThemeProvider } from 'next-themes'
+import { ChatBot } from '@/components/ChatBot'
 
 export default function RootLayout({
   children,
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           {children}
+          <ChatBot />
           {process.env.NODE_ENV === 'production' && <Analytics />}
         </ThemeProvider>
       </body>
