@@ -195,7 +195,7 @@ export default function ExamQuestionsPage() {
               </div>
             </Link>
             <div className="h-px bg-gray-100 dark:bg-gray-700" />
-            <button 
+            <button
               onClick={() => {
                 setShowOnlyBookmarked(true)
                 setMenuOpen(false)
@@ -237,7 +237,7 @@ export default function ExamQuestionsPage() {
             Comprehensive Exam Questions
           </h1>
           <p className="text-gray-600 dark:text-gray-400 mb-6">
-            Study material with inline answers, explanations, and interactive practice tools.
+            meow meow nigga. ith nee padicha nink full mark urapp!!!
           </p>
 
           <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
@@ -361,11 +361,10 @@ export default function ExamQuestionsPage() {
                             )}
                             <button
                               onClick={() => toggleBookmark(id)}
-                              className={`p-1.5 rounded-md transition-colors border ${
-                                bookmarked 
-                                  ? 'bg-amber-50 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/30 dark:border-amber-700 dark:hover:bg-amber-900/50' 
+                              className={`p-1.5 rounded-md transition-colors border ${bookmarked
+                                  ? 'bg-amber-50 border-amber-200 hover:bg-amber-100 dark:bg-amber-900/30 dark:border-amber-700 dark:hover:bg-amber-900/50'
                                   : 'bg-white border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700'
-                              }`}
+                                }`}
                               title={bookmarked ? "Remove Bookmark" : "Bookmark Question"}
                             >
                               <Star className={`w-4 h-4 ${bookmarked ? 'fill-amber-500 text-amber-500' : 'text-gray-400 dark:text-gray-500'}`} />
@@ -427,15 +426,15 @@ export default function ExamQuestionsPage() {
                 </div>
               </div >
             )
-})
+          })
         )}
 
-{/* Footer */ }
-<div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-6 text-center border border-indigo-100 dark:border-indigo-800/50">
-  <p className="text-gray-600 dark:text-gray-400">
-    made by claude opus 4.7 :D
-  </p>
-</div>
+        {/* Footer */}
+        <div className="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-6 text-center border border-indigo-100 dark:border-indigo-800/50">
+          <p className="text-gray-600 dark:text-gray-400">
+            made by claude opus 4.7 :D
+          </p>
+        </div>
       </div >
     </div >
   )
