@@ -258,10 +258,27 @@ export default function ExamQuestionsPage() {
             </div>
           </div>
 
-          <Button onClick={generatePDF} size="lg" className="w-full sm:w-auto">
-            <Download className="mr-2 h-5 w-5" />
-            Download PDF
-          </Button>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-gray-100 dark:border-gray-800 pt-6">
+            <Button onClick={generatePDF} size="lg" className="w-full sm:w-auto shrink-0">
+              <Download className="mr-2 h-5 w-5" />
+              Download PDF
+            </Button>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-sm text-gray-500 dark:text-gray-400 mr-1 hidden sm:inline-block">Jump to:</span>
+              {modules.map((m, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    document.getElementById(`module-${i}`)?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                  className="text-xs font-semibold px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-300 dark:hover:bg-indigo-900/50 transition-colors border border-indigo-100 dark:border-indigo-800 shadow-sm"
+                >
+                  {m.title}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Questions Display */}
@@ -274,7 +291,7 @@ export default function ExamQuestionsPage() {
             const isSummaryExpanded = expandedSummary === module.originalIndex
 
             return (
-              <div key={module.originalIndex} className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-4 sm:p-6 mb-6 border border-gray-100 dark:border-gray-800 scroll-mt-24">
+              <div id={`module-${module.originalIndex}`} key={module.originalIndex} className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-4 sm:p-6 mb-6 border border-gray-100 dark:border-gray-800 scroll-mt-24">
                 <div className="border-b border-gray-200 dark:border-gray-800 pb-4 mb-6">
                   <h2 className="text-2xl font-bold text-indigo-900 dark:text-indigo-400">{module.title}</h2>
                   <p className="text-lg text-gray-600 dark:text-gray-300 mt-1">{module.subject}</p>
