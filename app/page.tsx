@@ -204,11 +204,11 @@ export default function ExamQuestionsPage() {
                     )}
                   </div>
                   {q.image && (
-                    <div className="my-3 ml-4">
+                    <div className="my-3 ml-0 sm:ml-4">
                       <img
                         src={q.image}
                         alt="Question diagram"
-                        className="max-w-sm rounded-lg border border-gray-200 shadow-sm"
+                        className="w-full max-w-[280px] sm:max-w-sm rounded-lg border border-gray-200 shadow-sm mx-auto sm:mx-0"
                       />
                     </div>
                   )}
