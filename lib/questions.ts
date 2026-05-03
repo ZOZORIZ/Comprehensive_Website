@@ -624,7 +624,7 @@ export const modules: Module[] = [
       {
         q: "In K-map minimization, a group of 8 adjacent cells (octet) eliminates:",
         options: ["2 variables", "3 variables", "4 variables", "8 variables"],
-        answer: 2,
+        answer: 1,
       },
       {
         q: "Simplify F = A·(A' + B):",
