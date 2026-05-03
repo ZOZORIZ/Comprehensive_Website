@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { GoogleGenAI } from '@google/genai';
 
 // Simple in-memory rate limiting
 const rateLimit = new Map<string, { count: number; resetTime: number }>();
@@ -44,39 +45,53 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid messages array' }, { status: 400 });
     }
 
-    const apiKey = process.env.OPENROUTER_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      return NextResponse.json({ error: 'OpenRouter API key is not configured on the server. Please check your .env.local file.' }, { status: 500 });
+      return NextResponse.json({ error: 'Gemini API key is not configured on the server. Please check your .env.local file.' }, { status: 500 });
     }
+
+    const ai = new GoogleGenAI({ apiKey });
+
+    // Format messages for Google GenAI
+    const formattedMessages = messages.map(m => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }]
+    }));
 
     // 3. Make Streaming API Call
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-        'X-Title': 'Comprehensive Exam Assistant',
-      },
-      body: JSON.stringify({
-        model: 'tencent/hy3-preview:free',
-        messages: [
-          { role: 'system', content: 'You are a concise study assistant. Keep your answers brief, clear, and to the point. Do not generate overly long explanations unless explicitly asked.' },
-          ...messages
-        ],
-        stream: true,
-        reasoning: { enabled: true },
-        max_tokens: 600
-      }),
+    const responseStream = await ai.models.generateContentStream({
+      model: 'gemma-4-31b-a4b-it',
+      contents: formattedMessages,
+      config: {
+        systemInstruction: 'You are a concise study assistant. Keep your answers brief, clear, and to the point. Do not generate overly long explanations unless explicitly asked.',
+      }
     });
 
-    if (!response.ok) {
-      const errorData = await response.text();
-      console.error('OpenRouter API Error:', errorData);
-      return NextResponse.json({ error: `AI provider error: ${response.statusText}` }, { status: response.status });
-    }
+    const stream = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of responseStream) {
+            if (chunk.text) {
+              const data = JSON.stringify({
+                choices: [{
+                  delta: {
+                    content: chunk.text
+                  }
+                }]
+              });
+              controller.enqueue(new TextEncoder().encode(`data: ${data}\n\n`));
+            }
+          }
+          controller.enqueue(new TextEncoder().encode('data: [DONE]\n\n'));
+          controller.close();
+        } catch (error) {
+          console.error('Streaming error:', error);
+          controller.error(error);
+        }
+      }
+    });
 
-    return new Response(response.body, {
+    return new Response(stream, {
       headers: {
         'Content-Type': 'text/event-stream',
         'Cache-Control': 'no-cache',
