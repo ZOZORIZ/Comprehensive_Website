@@ -14,6 +14,7 @@ export type Question = {
 export type Module = {
   title: string
   subject: string
+  summary: string
   questions: Question[]
 }
 
@@ -22,6 +23,7 @@ export const modules: Module[] = [
   {
     title: "Module I",
     subject: "Data Structures",
+    summary: "Fundamental data structures including Arrays, Stacks, Queues, Linked Lists, Trees, and Graphs. Covers asymptotic notation (Big-O, Omega, Theta), sorting algorithms (Quick Sort, Insertion Sort), and Hashing techniques for collision resolution.",
     questions: [
       // --- Algorithms, Complexity & Asymptotic Notation ---
       {
@@ -523,6 +525,7 @@ export const modules: Module[] = [
   {
     title: "Module II",
     subject: "Logic Circuit Design",
+    summary: "Number systems (Binary, Octal, Hex, BCD, Gray code), Boolean Algebra, and logic gates. Combinational logic design including multiplexers, decoders, and adders. Sequential logic focusing on Flip-flops (SR, D, JK, T), Registers, and Counters.",
     questions: [
       {
         q: "Which number system uses base 2?",
@@ -916,6 +919,7 @@ export const modules: Module[] = [
   {
     title: "Module III",
     subject: "Computer Organization and Architecture",
+    summary: "Computer arithmetic including floating point operations and Booth's algorithm. Memory hierarchy covering Cache mapping, virtual memory, and main memory. Instruction formats, addressing modes, pipelining, and basic I/O interfacing (DMA, Interrupts).",
     questions: [
       {
         q: "Which functional unit performs arithmetic and logical operations?",
@@ -1223,6 +1227,7 @@ export const modules: Module[] = [
   {
     title: "Module IV",
     subject: "Operating Systems",
+    summary: "Core OS functions and process management. CPU scheduling algorithms (FCFS, SJF, Round Robin). Process synchronization, deadlocks, memory management (paging, segmentation), and file system implementation.",
     questions: [
       {
         q: "The primary role of an operating system is:",
@@ -1579,6 +1584,7 @@ export const modules: Module[] = [
   {
     title: "Module V",
     subject: "Digital Signal Processing",
+    summary: "Discrete-time signals and systems, LTI systems, Z-transform, and Fourier transforms (DFT, FFT algorithms like Radix-2). Design and realization of digital filters (FIR, IIR), bilinear transformation, and quantization effects.",
     questions: [
       {
         q: "Which of the following is an example of an elementary signal?",
