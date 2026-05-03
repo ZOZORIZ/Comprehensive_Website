@@ -140,7 +140,7 @@ export function ChatBot() {
                 }`}>
                   <div className={`prose prose-sm max-w-none ${msg.role === 'user' ? 'prose-invert text-white' : 'dark:prose-invert'}`}>
                     <ReactMarkdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-                      {msg.content || '...'}
+                      {msg.content ? msg.content.replace(/\\\[/g, '$$$$').replace(/\\\]/g, '$$$$').replace(/\\\(/g, '$').replace(/\\\)/g, '$') : '...'}
                     </ReactMarkdown>
                   </div>
                   {msg.role === 'assistant' && msg.reasoning_details && (
